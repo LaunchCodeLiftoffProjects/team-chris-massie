@@ -1,0 +1,2 @@
+public class RichardsClass2 {
+}
