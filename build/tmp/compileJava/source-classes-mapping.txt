@@ -1,4 +1,18 @@
 vats/project/premier/PremierApplication.java
  vats.project.premier.PremierApplication
+vats/project/premier/models/data/AchievementRepository.java
+ vats.project.premier.models.data.AchievementRepository
+vats/project/premier/models/AbstractEntity.java
+ vats.project.premier.models.AbstractEntity
+vats/project/premier/models/Review.java
+ vats.project.premier.models.Review
+vats/project/premier/models/Achievement.java
+ vats.project.premier.models.Achievement
 vats/project/premier/controller/HelloController.java
  vats.project.premier.controller.HelloController
+vats/project/premier/models/data/ReviewDepository.java
+ vats.project.premier.models.data.ReviewDepository
+vats/project/premier/models/data/GameRepository.java
+ vats.project.premier.models.data.GameRepository
+vats/project/premier/models/Game.java
+ vats.project.premier.models.Game

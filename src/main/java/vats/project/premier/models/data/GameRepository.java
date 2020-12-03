@@ -7,6 +7,5 @@ import vats.project.premier.models.Game;
 import javax.transaction.Transactional;
 
 @Repository
-@Transactional
 public interface GameRepository extends CrudRepository<Game, Integer> {
 }
