@@ -7,6 +7,5 @@ import vats.project.premier.models.Achievement;
 import javax.transaction.Transactional;
 
 @Repository
-@Transactional
 public interface AchievementRepository extends CrudRepository<Achievement, Integer> {
 }
