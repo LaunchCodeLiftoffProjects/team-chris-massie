@@ -7,5 +7,5 @@ import vats.project.premier.models.Review;
 import javax.transaction.Transactional;
 
 @Repository
-public interface ReviewDepository extends CrudRepository<Review, Integer> {
+public interface ReviewRepository extends CrudRepository<Review, Integer> {
 }
