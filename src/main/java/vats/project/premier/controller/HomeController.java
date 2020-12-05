@@ -26,4 +26,11 @@ public class HomeController {
 
         return "index";
     }
+
+    @RequestMapping("register")
+    public String displayRegisterForm(Model model) {
+        model.addAttribute("register form", "Register here");
+
+        return "register";
+    }
 }

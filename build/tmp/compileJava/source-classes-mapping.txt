@@ -24,7 +24,7 @@ vats/project/premier/controller/SearchController.java
  vats.project.premier.controller.SearchController
 vats/project/premier/controller/ReviewController.java
  vats.project.premier.controller.ReviewController
-vats/project/premier/controller/HomeController.java
- vats.project.premier.controller.HomeController
 vats/project/premier/models/data/ReviewRepository.java
  vats.project.premier.models.data.ReviewRepository
+vats/project/premier/controller/HomeController.java
+ vats.project.premier.controller.HomeController
