@@ -33,4 +33,25 @@ public class HomeController {
 
         return "register";
     }
+
+    @RequestMapping("achievements")
+    public String displayAchievementsForm(Model model) {
+        model.addAttribute("Achievements form", "Achievements");
+
+        return "achievements";
+    }
+
+    @RequestMapping("games")
+    public String displayGamesForm(Model model) {
+        model.addAttribute("Games form", "Games");
+
+        return "games";
+    }
+
+    @RequestMapping("reviews")
+    public String displayReviewsForm(Model model) {
+        model.addAttribute("Reviews form", "Reviews");
+
+        return "reviews";
+    }
 }
