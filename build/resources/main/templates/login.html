@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container">
+<body class="container" background="/image/1625.jpg" >
 
 <div th:replace="fragments :: page-header"></div>
 
 <form method="post">
+    <h2 align="center" style="color:white"><i>Welcome to Real-Time Video Game Achievement Tracking System!</i></h2>
     <div class="form-group">
-        <label th:for="username">Username
+        <label th:for="username" style="color:white">Username
             <input class="form-control" th:field="${loginFormDTO.username}">
         </label>
         <p class="error" th:errors="${loginFormDTO.username}"></p>
     </div>
     <div class="form-group">
-        <label>Password
+        <label style="color:white">Password
             <input class="form-control" th:field="${loginFormDTO.password}" type="password">
         </label>
         <p class="error" th:errors="${loginFormDTO.password}"></p>
@@ -26,4 +27,5 @@
 <p>Don't have an account? <a href="/register">Register for one.</a></p>
 
 </body>
+<footer><a href='https://www.freepik.com/vectors/background'>Background vector created by upklyak - www.freepik.com</a></footer>
 </html>

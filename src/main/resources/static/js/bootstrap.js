@@ -1,7 +1,3 @@
-.body-content {
-    margin-top: 72px;
-}
-
 td, th {
     padding: 10px;
 }
@@ -16,6 +12,10 @@ td {
 
 tr:nth-child(odd) {
     background-color: #e4e4e4;
+}
+
+.body-content {
+    margin-top: 72px;
 }
 
 .centeredTable {
