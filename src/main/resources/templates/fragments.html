@@ -4,10 +4,16 @@
 <head th:fragment="head">
 
     <!-- Bootstrap stylesheets and script -->
+    <!--
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <link th:href="@{/css/vats.css}" rel="stylesheet" />
+    <!--
     <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
-
+    -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <title th:text="'VATS' + ${title == null ?'':'::' + title}">VATS</title>
 </head>
 
@@ -16,18 +22,18 @@
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-<!--            <img src="/image/VATS_logo.png" width="40" height="40">-->
-           <a th:href="@{/}" class="navbar-brand"><img src="/image/VATS_logo.png" width="40" height="30"></a>
+            <!--            <img src="/image/VATS_logo.png" width="40" height="40">-->
+            <a th:href="@{/}" class="navbar-brand"><img src="/image/VATS_logo.png" width="40" height="30"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/index}">Home</a></li>
+                <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/games}">Games</a></li>
                 <li><a th:href="@{/achievements}">Achievements</a></li>
                 <li><a th:href="@{/reviews}">Reviews</a></li>
-                <li><a th:href="@{/register}">Register</a></li>
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/logout}">Logout</a></li>
+                <li><a th:if="${user == null}" th:href="@{/register}">Register</a></li>
+                <li><a th:if="${user == null}" th:href="@{/login}">Login</a></li>
+                <li><a th:if="${user != null}" th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </div>
