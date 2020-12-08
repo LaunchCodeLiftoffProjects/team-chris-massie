@@ -15,7 +15,7 @@ public abstract class AbstractEntity {
     private int id;
 
     @NotNull
-    private String name;
+    public String name;
 
     public int getId() {
         return id;
