@@ -3,7 +3,9 @@ package vats.project.premier.models;
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class User extends AbstractEntity{
     @NotNull
     private String pwHash;
 
+    @OneToMany(cascade= CascadeType.ALL)
     public List<Game> games = new ArrayList<>();
 
     public User() {}
