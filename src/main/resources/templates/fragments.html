@@ -21,20 +21,37 @@
 
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <!--            <img src="/image/VATS_logo.png" width="40" height="40">-->
-            <a th:href="@{/}" class="navbar-brand"><img src="/image/VATS_logo.png" width="40" height="30"></a>
+        <div cla/a></li>ss="navbar-header">
+                <!--            <img src="/image/VATS_logo.png" width="40" height="40">-->
+                <a th:href="@{/}" class="navbar-brand"><img src="/image/VATS_logo.png" width="40" height="30"></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/games}">Games</a></li>
+                <li><a th:href="@{/games}">Games<
                 <li><a th:href="@{/achievements}">Achievements</a></li>
                 <li><a th:href="@{/reviews}">Reviews</a></li>
                 <li><a th:if="${user == null}" th:href="@{/register}">Register</a></li>
                 <li><a th:if="${user == null}" th:href="@{/login}">Login</a></li>
                 <li><a th:if="${user != null}" th:href="@{/logout}">Logout</a></li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="creation-form">
+    <div class="container">
+        <div class="form-group">
+            <label th:for="username" style="color:white">Game Name
+                <input class="form-control" th:field="${game.name}">
+            </label>
+            <p class="error" th:errors="${game.name}"></p>
+        </div>
+        <div class="form-group">
+            <label style="color:white">Platform
+                <input class="form-control" th:field="${game.platform}">
+            </label>
+            <p class="error" th:errors="${game.platform}"></p>
         </div>
     </div>
 </div>

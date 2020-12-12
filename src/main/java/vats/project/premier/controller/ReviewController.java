@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vats.project.premier.models.data.ReviewRepository;
 
 @Controller
-@RequestMapping("reviews")
 public class ReviewController {
 
     @Autowired

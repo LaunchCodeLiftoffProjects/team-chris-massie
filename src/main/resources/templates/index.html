@@ -4,15 +4,39 @@
 <body>
 
 <div th:replace="fragments :: page-header"></div>
-<div class="container body-content">
-    <h1 align="center">Welcome to Real-Time Video Game Achievement Tracking System!</h1>
-
-    <button onclick="window.location.href= '/register'">Register Now!</button>
-    <button onclick="window.location.href= '/login'">Login</button>
-
 <!--    <p><a href="/register">Register Now!</a></p>-->
 <!--    <p><a href="/login">Login</a></p>-->
-
+    <div class="container body-content">
+        <h1 align="center">Welcome to Real-Time Video Game Achievement Tracking System!</h1>
+        <h1 align="center">Hello [Username]!</h1>
+        <form method="post" style = "max-width:500 px;">
+            <div class="form-group">
+                <label th:for="game">Game Name </label>
+                <select name = "gameId">
+                    <option th:each = "game: ${games}" th:text="${game.name}" th:value="$game.id">
+                    </option>
+                </select>
+                <a th:href="@{/games}"> Add games</a>
+            </div>
+            <div class="form-group">
+                <label th:for="achievement">Achievements </label>
+                <select name = "achievementId">
+                    <option th:each = "achievement: ${achievements}" th:text="${achievement.name}" th:value="$achievement.id">
+                    </option>
+                </select>
+                <a th:href="@{/achievements}"> Add Achievements</a>
+            </div>
+            <div class="form-group">
+                <label th:for="review">Game Name </label>
+                <select name = "reviewId">
+                    <option th:each = "review: ${reviews}" th:text="${review.name}" th:value="$review.id">
+                    </option>
+                </select>
+                <a th:href="@{/reviews}"> Add Reviews</a>
+            </div>
+            <input type = "submit" value = "Add Game Info" />
+        </form>
+    </div>
 </div>
 </body>
 </html>
