@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vats.project.premier.models.data.GameRepository;
 
 @Controller
+@RequestMapping("games")
 public class GameController {
 
     @Autowired

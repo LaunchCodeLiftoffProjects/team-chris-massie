@@ -1,5 +1,5 @@
-vats/project/premier/controller/GameController.java
- vats.project.premier.controller.GameController
+vats/project/premier/controller/HelloController.java
+ vats.project.premier.controller.HelloController
 vats/project/premier/models/Game.java
  vats.project.premier.models.Game
 vats/project/premier/WebApplicationConfig.java
@@ -10,8 +10,8 @@ vats/project/premier/models/dto/LoginFormDTO.java
  vats.project.premier.models.dto.LoginFormDTO
 vats/project/premier/models/AbstractEntity.java
  vats.project.premier.models.AbstractEntity
-vats/project/premier/models/User.java
- vats.project.premier.models.User
+vats/project/premier/controller/SearchController.java
+ vats.project.premier.controller.SearchController
 vats/project/premier/models/Review.java
  vats.project.premier.models.Review
 vats/project/premier/models/dto/RegisterFormDTO.java
@@ -32,13 +32,13 @@ vats/project/premier/models/data/AchievementRepository.java
  vats.project.premier.models.data.AchievementRepository
 vats/project/premier/controller/UserController.java
  vats.project.premier.controller.UserController
-vats/project/premier/controller/HelloController.java
- vats.project.premier.controller.HelloController
-vats/project/premier/controller/HomeController.java
- vats.project.premier.controller.HomeController
-vats/project/premier/controller/SearchController.java
- vats.project.premier.controller.SearchController
+vats/project/premier/models/User.java
+ vats.project.premier.models.User
 vats/project/premier/controller/AchievementController.java
  vats.project.premier.controller.AchievementController
+vats/project/premier/controller/GameController.java
+ vats.project.premier.controller.GameController
+vats/project/premier/controller/HomeController.java
+ vats.project.premier.controller.HomeController
 vats/project/premier/controller/ReviewController.java
  vats.project.premier.controller.ReviewController
