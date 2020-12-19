@@ -7,8 +7,6 @@ public class Achievement extends AbstractEntity{
 
     private String description;
 
-    public String Achievement(){ return description ;}
-
     public String getDescription() {
         return description;
     }
