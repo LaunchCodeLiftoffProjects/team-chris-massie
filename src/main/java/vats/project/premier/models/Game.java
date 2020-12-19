@@ -17,6 +17,8 @@ public class Game extends AbstractEntity{
     @OneToMany(cascade=CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
+    public String name;
+
     public String getPlatform() {
         return platform;
     }

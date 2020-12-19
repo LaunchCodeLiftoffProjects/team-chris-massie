@@ -32,13 +32,13 @@ vats/project/premier/models/data/AchievementRepository.java
  vats.project.premier.models.data.AchievementRepository
 vats/project/premier/controller/UserController.java
  vats.project.premier.controller.UserController
-vats/project/premier/controller/HelloController.java
- vats.project.premier.controller.HelloController
+vats/project/premier/controller/GameController.java
+ vats.project.premier.controller.GameController
 vats/project/premier/controller/HomeController.java
  vats.project.premier.controller.HomeController
 vats/project/premier/controller/SearchController.java
  vats.project.premier.controller.SearchController
 vats/project/premier/models/User.java
  vats.project.premier.models.User
-vats/project/premier/controller/GameController.java
- vats.project.premier.controller.GameController
+vats/project/premier/controller/HelloController.java
+ vats.project.premier.controller.HelloController
