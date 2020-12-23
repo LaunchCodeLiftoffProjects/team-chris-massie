@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container  body-content">
-<body>
+<body class="container" background="/image/sheLooks@TheLeftV2WebsiteEdition.jpg" >
 
     <div th:replace="fragments :: page-header"></div>
     <h1>Welcome to Video Game Achievement Tracking System!</h1>
     <h2>Add a game</h2>
 
-    <form method="post"style="max-width:600px;" >
-            <div class="form-group">
+    <form method="post" style="max-width:600px;" >
+            <div class= "form-group">
                 <label th:for="game" style="color:black">Game Name</label>
                 <input class="form-control" th:field="${game.name}">
                 <p class="error" th:errors="${game.name}"></p>
@@ -22,7 +22,6 @@
             </div>
 
             <input type="submit" value="Create game" />
-        </div>
     </form>
 </body>
 </body>
