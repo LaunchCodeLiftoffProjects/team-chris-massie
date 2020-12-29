@@ -1,11 +1,23 @@
 package vats.project.premier.models;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Achievement extends AbstractEntity{
 
+    @OneToMany
+    private final List<Game> games = new ArrayList<>();
+
     private String description;
+
+    public Achievement(){}
+
+    public Achievement(String description){
+        this.description = description;
+    }
 
     public String getDescription() {
         return description;

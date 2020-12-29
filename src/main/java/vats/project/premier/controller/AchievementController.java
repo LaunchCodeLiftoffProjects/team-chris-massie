@@ -20,7 +20,8 @@ public class AchievementController {
 
     @RequestMapping("achievements")
     public String displayAchievementsForm(Model model) {
-        model.addAttribute("Achievements form", "Achievements");
+        model.addAttribute("title", "Add an Achievement");
+        model.addAttribute("achievements", achievementRepository.findAll());
         model.addAttribute(new Achievement());
         return "achievements";
     }
@@ -29,9 +30,10 @@ public class AchievementController {
     public String processGamesForm(@ModelAttribute @Valid Achievement newAchievement, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add an Achievement");
+            model.addAttribute("achievements", achievementRepository.findAll());
             return "achievements";
         }
         achievementRepository.save(newAchievement);
-        return "achievements";
+        return "redirect:/achievements";
     }
 }

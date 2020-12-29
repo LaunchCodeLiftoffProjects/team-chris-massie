@@ -19,8 +19,35 @@
     </div>
 
     <input type="submit" value="Create achievement" />
-
 </form>
+<p></p>
+<p>Submitted Achievements</p>
+<div>
+    <table class = "table table-striped">
+        <tr>
+            <td>
+                <p>ID</p>
+            </td>
+            <td>
+                <p>Name</p>
+            </td>
+            <td>
+                <p>Description</p>
+            </td>
+        </tr>
+        <tr th:each= "achievement: ${achievements}">
+            <td>
+                <p th:text = "${achievement.id}"></p>
+            </td>
+            <td>
+                <p th:text = "${achievement.name}"></p>
+            </td>
+            <td>
+                <p th:text = "${achievement.description}"></p>
+            </td>
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>

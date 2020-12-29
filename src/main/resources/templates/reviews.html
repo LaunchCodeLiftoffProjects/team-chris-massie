@@ -9,5 +9,50 @@
     <p></p>
     <h2>Game Reviews Page</h2>
 
+    <form method="post" style="max-width:600px;" >
+        <div class="form-group">
+            <label th:for="review" style="color:black">Review Name</label>
+            <input class="form-control" th:field="${review.name}">
+            <p class="error" th:errors="${review.name}"></p>
+        </div>
+        <div class="form-group">
+            <label th:for="description" style="color:black">Description</label>
+            <input class="form-control" th:field="${review.description}">
+            <p class="error" th:errors="${review.description}"></p>
+        </div>
+
+        <input type="submit" value="Create Review" />
+
+    </form>
+    <p></p>
+    <p>Submitted Reviews</p>
+    <div>
+        <table class = "table table-striped">
+            <tr>
+                <td>
+                    <p>ID</p>
+                </td>
+                <td>
+                    <p>Name</p>
+                </td>
+                <td>
+                    <p>Description</p>
+                </td>
+            </tr>
+            <tr th:each= "review: ${reviews}">
+                <td>
+                    <p th:text = "${review.id}"></p>
+                </td>
+                <td>
+                    <p th:text = "${review.name}"></p>
+                </td>
+                <td>
+                    <p th:text = "${review.description}"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
 </body>
 </html>
