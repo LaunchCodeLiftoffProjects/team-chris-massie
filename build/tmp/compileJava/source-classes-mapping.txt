@@ -2,8 +2,8 @@ vats/project/premier/controller/AchievementController.java
  vats.project.premier.controller.AchievementController
 vats/project/premier/models/Game.java
  vats.project.premier.models.Game
-vats/project/premier/controller/HelloController.java
- vats.project.premier.controller.HelloController
+vats/project/premier/WebApplicationConfig.java
+ vats.project.premier.WebApplicationConfig
 vats/project/premier/PremierApplication.java
  vats.project.premier.PremierApplication
 vats/project/premier/models/dto/LoginFormDTO.java
@@ -22,12 +22,12 @@ vats/project/premier/models/data/GameRepository.java
  vats.project.premier.models.data.GameRepository
 vats/project/premier/models/data/ReviewRepository.java
  vats.project.premier.models.data.ReviewRepository
-vats/project/premier/controller/SearchController.java
- vats.project.premier.controller.SearchController
-vats/project/premier/controller/HomeController.java
- vats.project.premier.controller.HomeController
-vats/project/premier/WebApplicationConfig.java
- vats.project.premier.WebApplicationConfig
+vats/project/premier/AuthenticationFilter.java
+ vats.project.premier.AuthenticationFilter
+vats/project/premier/models/data/UserRepository.java
+ vats.project.premier.models.data.UserRepository
+vats/project/premier/controller/AuthenticationController.java
+ vats.project.premier.controller.AuthenticationController
 vats/project/premier/models/data/AchievementRepository.java
  vats.project.premier.models.data.AchievementRepository
 vats/project/premier/controller/UserController.java
@@ -46,13 +46,3 @@ vats/project/premier/models/Tracker.java
  vats.project.premier.models.Tracker
 vats/project/premier/controller/HelloController.java
  vats.project.premier.controller.HelloController
-vats/project/premier/controller/GameController.java
- vats.project.premier.controller.GameController
-vats/project/premier/models/data/UserRepository.java
- vats.project.premier.models.data.UserRepository
-vats/project/premier/controller/AuthenticationController.java
- vats.project.premier.controller.AuthenticationController
-vats/project/premier/models/User.java
- vats.project.premier.models.User
-vats/project/premier/AuthenticationFilter.java
- vats.project.premier.AuthenticationFilter
