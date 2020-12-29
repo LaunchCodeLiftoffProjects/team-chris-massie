@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+
+<body class="container melikey">
 
 <div th:replace="fragments :: page-header"></div>
 
+
 <div class="container body-content">
-        <h1 align="center">Welcome to Real-Time Video Game Achievement Tracking System!</h1>
-        <h1 align="center">Hello [Username]!</h1>
-        <form method="post" style = "max-width:500 px;">
+        <h1 class="p1" align="center">Hello <span th:text="${user.getName}" />
+        <h1 class="p1" align="center">Welcome to Real-Time Video Game Achievement Tracking System!</h1>
+        </h1>
+        <form class="p1" method="post" style = "max-width:500 px;">
             <div class="form-group">
                 <label th:for="game">Game Name </label>
                 <select name = "gameId">

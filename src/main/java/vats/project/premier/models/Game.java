@@ -11,7 +11,7 @@ public class Game extends AbstractEntity{
 
     private String platform;
 
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Achievement> achievements = new ArrayList<>();
 
     @OneToMany(cascade=CascadeType.ALL)

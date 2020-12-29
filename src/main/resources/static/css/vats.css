@@ -64,3 +64,33 @@ div.job-listing {
 form {
     margin-top: 72px;
 }
+
+body.melikey {
+    background-image:url('/image/meLikeyBangBangWebsiteEdition.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.p1{
+    font: Garamond;
+    font-weight: bold;
+    color: black;
+    text-shadow: 2px 2px #FF0000;
+    text-align: left;
+}
+
+body.kafka {
+    background-image:url('/image/KafkaWebsiteEdition.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+body.blast {
+    background-image:url('/image/BlastToTheRightWebsiteEdition.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.whitebg{
+    background-color: #fff;
+}
