@@ -94,3 +94,9 @@ body.blast {
 .whitebg{
     background-color: #fff;
 }
+
+body.toTheLeft {
+    background-image:url('/image/sheLooks@TheLeftV2WebsiteEdition.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
