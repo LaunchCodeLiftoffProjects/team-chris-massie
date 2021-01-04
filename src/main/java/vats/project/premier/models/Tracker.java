@@ -10,13 +10,31 @@ import java.util.List;
 public class Tracker extends AbstractEntity{
 
     @OneToMany(cascade= CascadeType.ALL)
-    private List<Game> games = new ArrayList<Game>();
+    private List<Game> games = new ArrayList<>();
 
-    public Tracker() {};
+    private String userName;
 
-    public Tracker(List<Game> agames){
+    public Tracker() {}
+
+    public Tracker(List<Game> agames, String userName){
+        this.userName = userName;
         this.games = agames;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
 }
 

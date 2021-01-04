@@ -56,6 +56,7 @@ public class GameController {
         gameRepository.save(newGame);
         return "games";
     }
+
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Game");
