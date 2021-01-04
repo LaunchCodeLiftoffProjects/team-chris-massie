@@ -3,12 +3,14 @@ package vats.project.premier.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Game extends AbstractEntity{
 
+    @NotBlank(message = "Please select a platform.")
     private String platform;
 
     @OneToMany(cascade=CascadeType.ALL)

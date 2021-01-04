@@ -42,15 +42,16 @@ public class GameController {
         return "games";
     }
     @PostMapping("games")
-    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model, @RequestParam List<Integer>  achievementIds, @RequestParam List<Integer> reviewIds){
+    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
+                                   @RequestParam List<Integer>  achievementId, @RequestParam List<Integer> reviewId){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
-            return "game";
+            return "games";
         }
-        List<Achievement> achievement = (List<Achievement>) achievementRepository.findAllById(achievementIds);
+        List<Achievement> achievement = (List<Achievement>) achievementRepository.findAllById(achievementId);
         newGame.setAchievements(achievement);
 
-        List<Review> review = (List<Review>)reviewRepository.findAllById(reviewIds);
+        List<Review> review = (List<Review>)reviewRepository.findAllById(reviewId);
         newGame.setReviews(review);
 
         gameRepository.save(newGame);
