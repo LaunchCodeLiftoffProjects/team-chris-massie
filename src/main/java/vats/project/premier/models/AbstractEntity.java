@@ -1,10 +1,9 @@
 package vats.project.premier.models;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -14,7 +13,7 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
-    @NotNull
+    @NotBlank(message = "Please enter a name.")
     public String name;
 
     public int getId() {
