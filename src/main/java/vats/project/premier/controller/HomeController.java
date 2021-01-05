@@ -7,6 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import vats.project.premier.models.Game;
 import vats.project.premier.models.Tracker;
 import vats.project.premier.models.data.AchievementRepository;
 import vats.project.premier.models.data.GameRepository;
@@ -14,6 +16,7 @@ import vats.project.premier.models.data.ReviewRepository;
 import vats.project.premier.models.data.TrackerRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -42,6 +45,7 @@ public class HomeController {
         model.addAttribute("achievements", achievementRepository.findAll() );
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
+        model.addAttribute("trackers", trackerRepository.findAll());
         model.addAttribute(new Tracker());
         return "index";
     }
@@ -54,19 +58,16 @@ public class HomeController {
     }
 
     @PostMapping("")
-    public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model){
+    public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model, @RequestParam List<Integer> gameId, @RequestParam String userName){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game Tracker Information");
             return "index";
         }
 
-//        Game game= gameRepository.findById(gameId);
-//        newTracker.setGames(game);
-//
-//        Achievement achievement=achievementRepository.findById(achievementId);
-//        newTracker.setAchievements(achievement);
-//
-//        newTracker.setReviews(review);
+        List<Game> game = (List<Game>) gameRepository.findAllById(gameId);
+        newTracker.setGames(game);
+
+        newTracker.setUserName(userName);
 
         trackerRepository.save(newTracker);
         return "index";

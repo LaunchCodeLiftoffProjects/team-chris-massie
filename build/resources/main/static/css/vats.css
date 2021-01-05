@@ -1,5 +1,6 @@
 .body-content {
     margin-top: 72px;
+    background-color: #454444;
 }
 
 td, th {
@@ -16,6 +17,11 @@ td {
 
 tr:nth-child(odd) {
     background-color: #e4e4e4;
+    color:black;
+}
+
+tr:nth-child(even) {
+    color:white;
 }
 
 .centeredTable {
@@ -74,7 +80,6 @@ body.melikey {
 .p1{
     font: Garamond;
     font-weight: bold;
-    color: black;
     text-shadow: 2px 2px #FF0000;
     text-align: left;
 }
