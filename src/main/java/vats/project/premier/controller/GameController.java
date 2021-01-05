@@ -41,6 +41,7 @@ public class GameController {
         model.addAttribute(new Game());
         return "games";
     }
+
     @PostMapping("games")
     public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
                                    @RequestParam List<Integer>  achievementId, @RequestParam List<Integer> reviewId){
@@ -57,6 +58,7 @@ public class GameController {
         gameRepository.save(newGame);
         return "games";
     }
+
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Game");
