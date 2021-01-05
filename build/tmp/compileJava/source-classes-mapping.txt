@@ -42,7 +42,7 @@ vats/project/premier/controller/SearchController.java
  vats.project.premier.controller.SearchController
 vats/project/premier/models/User.java
  vats.project.premier.models.User
-vats/project/premier/models/Tracker.java
- vats.project.premier.models.Tracker
 vats/project/premier/controller/HomeController.java
  vats.project.premier.controller.HomeController
+vats/project/premier/models/Tracker.java
+ vats.project.premier.models.Tracker
