@@ -9,13 +9,16 @@ import java.util.List;
 @Entity
 public class Game extends AbstractEntity{
 
-    private String platform;
+    @OneToMany
+    private final List<Tracker> trackers = new ArrayList<>();
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade= CascadeType.ALL)
     private List<Achievement> achievements = new ArrayList<>();
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade= CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+
+    private String platform;
 
     public Game(){}
 

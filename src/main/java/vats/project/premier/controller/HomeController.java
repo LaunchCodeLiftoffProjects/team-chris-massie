@@ -53,7 +53,6 @@ public class HomeController {
     @RequestMapping("register")
     public String displayRegisterForm(Model model) {
         model.addAttribute("register form", "Register here");
-
         return "register";
     }
 
@@ -61,6 +60,7 @@ public class HomeController {
     public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model, @RequestParam List<Integer> gameId, @RequestParam String userName){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game Tracker Information");
+            model.addAttribute("myerrors", errors.toString());
             return "index";
         }
 

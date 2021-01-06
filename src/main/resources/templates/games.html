@@ -9,10 +9,11 @@
 <div class="container body-content">
     <h1 class="p1" style="color:white">Welcome to Video Game Achievement Tracking System!</h1>
     <h2 class="p1" style="color:white">Add a game</h2>
+    <h3 th:text="${myerrors}">Errors: </h3>
 
      <form method="post" style="max-width:600px;" >
         <div class= "form-group">
-            <label class="p1" th:for="game" style="color:white">Game Name</label>
+            <label class="p1" th:for="name" style="color:white">Game Name</label>
             <input class="form-control" th:field="${game.name}">
             <p class="error" th:errors="${game.name}"></p>
         </div>
@@ -24,17 +25,19 @@
         </div>
 
         <div class="form-group">
-             <label th:for="achievement" style="color:white">Achievements </label>
-             <select name = "achievementIds" multiple>
-                 <option th:each = "achievement: ${achievements}" th:text="${achievement.name}" th:value="${achievement.id}">
+             <label th:for="achievements" style="color:white">Achievements </label>
+             <select name = "achievements" multiple>
+                 <option th:each = "achievement: ${achievements}"
+                         th:text="${achievement.name}"
+                         th:value="${achievement.id}">
                  </option>
              </select>
              <a th:href="@{/achievements}"> Add Achievements</a>
         </div>
 
         <div class="form-group">
-             <label th:for="review" style="color:white">Reviews </label>
-             <select name = "reviewIds" multiple>
+             <label th:for="reviews" style="color:white">Reviews </label>
+             <select name = "reviews" multiple>
                  <option th:each = "review: ${reviews}" th:text="${review.description}" th:value="${review.id}">
                  </option>
              </select>
@@ -43,36 +46,47 @@
 
         <input type="submit" value="Create game" />
     </form>
+    <br>
+    <p style="color:white">Submitted Games</p>
+    <div>
+        <table class = "table table-striped">
+            <tr>
+                <td>
+                    <p>Name</p>
+                </td>
+                <td>
+                    <p>Platform</p>
+                </td>
+                <td>
+                    <p>Achievement</p>
+                </td>
+                <td>
+                    <p>Review</p>
+                </td>
+            </tr>
+            <tr th:each= "game: ${games}">
+                <td>
+                    <p th:text = "${game.name}"></p>
+                </td>
+                <td>
+                    <p th:text = "${game.platform}"></p>
+                </td>
+                <td>
+                    <li th:each = "achievement: ${game.achievements}">
+                        <p th:text = "${achievement.name}"></p>
+                    </li>
+                </td>
+                <td>
+                    <li th:each = "review: ${game.reviews}">
+                        <p th:text = "${review.name}"></p>
+                    </li>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
 </body>
 
 </html>
-
-<!--    <div class="container body-content">-->
-<!--        <label>Platform-->
-<!--            <select th:field="${game.platform}">-->
-<!--                <option value="string">Playstation</option>-->
-<!--                <option value="string">Xbox</option>-->
-<!--                <option value="string">PC</option>-->
-<!--                <option value="string">Nintendo</option>-->
-<!--            </select>-->
-<!--            <p class="error" th:errors="${game.platform}"></p>-->
-<!--        </label>-->
-<!--    </div>-->
-<!--    <div class="container body-content">-->
-<!--    </div>-->
-
-
-<!--    <div class="container body-content">-->
-<!--        <label>Platform-->
-<!--            <select th:field="${game.platform}">-->
-<!--                <option value="string">Playstation</option>-->
-<!--                <option value="string">Xbox</option>-->
-<!--                <option value="string">PC</option>-->
-<!--                <option value="string">Nintendo</option>-->
-<!--            </select>-->
-<!--            <p class="error" th:errors="${game.platform}"></p>-->
-<!--        </label>-->
-<!--    </div>-->
-<!--    <div class="container body-content">-->
-<!--    </div>-->
 
