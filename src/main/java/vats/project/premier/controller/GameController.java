@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("game")
 public class GameController {
 
     @Autowired
@@ -39,14 +39,15 @@ public class GameController {
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
         model.addAttribute(new Game());
-        return "games";
+        return "game/games";
     }
     @PostMapping("games")
-    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model, @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews){
+    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
+                                   @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
             model.addAttribute("myerrors", errors.toString());
-            return "games";
+            return "game/games";
         }
         List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
         newGame.setAchievements(achievementObj);
@@ -63,6 +64,26 @@ public class GameController {
         model.addAttribute("title", "Create Game");
         model.addAttribute(new Game());
         model.addAttribute("categories", gameRepository.findAll());
-        return "create";
+        return "game/create";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteGameForm(Model model) {
+
+        model.addAttribute("title", "Delete Games");
+        model.addAttribute("games", gameRepository.findAll());
+        return "game/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteGamesForm(@RequestParam(required = false) int[] gameIds) {
+
+        if (gameIds != null) {
+            for (int id : gameIds) {
+                gameRepository.deleteById(id);
+            }
+        }
+
+        return "redirect:";
     }
 }

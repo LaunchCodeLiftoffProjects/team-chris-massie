@@ -28,9 +28,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/games}">Games</a></li>
+                <li><a th:href="@{/game/games}">Games</a></li>
                 <li><a th:href="@{/achievements}">Achievements</a></li>
                 <li><a th:href="@{/reviews}">Reviews</a></li>
+                <li><a href="@{/game/delete}">Delete Events</a></li>
                 <li><a th:if="${user == null}" th:href="@{/register}">Register</a></li>
                 <li><a th:if="${user == null}" th:href="@{/login}">Login</a></li>
                 <li><a th:if="${user != null}" th:href="@{/logout}">Logout</a></li>
