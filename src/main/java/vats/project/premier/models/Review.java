@@ -14,7 +14,7 @@ public class Review extends AbstractEntity{
     @JoinColumn
     private final List<Game> games = new ArrayList<>();
 
-    @NotBlank(message = "Please enter a description.")
+    @NotBlank(message = "Please enter description.")
     private String description;
 
     public Review() {};
