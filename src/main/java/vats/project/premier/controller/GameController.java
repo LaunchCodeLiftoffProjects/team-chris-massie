@@ -35,7 +35,7 @@ public class GameController {
     @RequestMapping("games")
     public String displayGamesForm(Model model) {
         model.addAttribute("Games form", "Games");
-        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("achievements", achievementRepository.findAll());
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
         model.addAttribute(new Game());

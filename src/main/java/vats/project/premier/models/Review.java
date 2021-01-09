@@ -11,13 +11,14 @@ public class Review extends AbstractEntity{
 
     @OneToMany
     @JoinColumn
-    private final List<Game> games = new ArrayList<>();
+    private  List<Game> games = new ArrayList<>();
 
     private String description;
 
     public Review() {};
 
-    public Review(String description){
+    public Review(List<Game> games, String description) {
+        this.games = games;
         this.description = description;
     }
 
@@ -29,4 +30,11 @@ public class Review extends AbstractEntity{
         this.description = description;
     }
 
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
 }
