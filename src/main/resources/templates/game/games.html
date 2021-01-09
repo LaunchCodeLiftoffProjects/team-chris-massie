@@ -9,19 +9,19 @@
 <div class="container body-content">
     <h1 class="p1" style="color:white">Welcome to Video Game Achievement Tracking System!</h1>
     <h2 class="p1" style="color:white">Add a game</h2>
-    <h3 th:text="${myerrors}">Errors: </h3>
+
 
      <form method="post" style="max-width:600px;" >
         <div class= "form-group">
             <label class="p1" th:for="name" style="color:white">Game Name</label>
             <input class="form-control" th:field="${game.name}">
-            <p class="error" th:errors="${game.name}"></p>
+            <p style="color:white" class="error" th:errors="${game.name}"></p>
         </div>
 
         <div class="form-group">
             <label class="p1" th:for="platform" style="color:white">Platform</label>
                 <input class="form-control" th:field="${game.platform}">
-            <p class="error" th:errors="${game.platform}"></p>
+            <p style="color:white" class="error" th:errors="${game.platform}"></p>
         </div>
 
         <div class="form-group">

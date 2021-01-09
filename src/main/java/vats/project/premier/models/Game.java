@@ -3,6 +3,7 @@ package vats.project.premier.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Game extends AbstractEntity{
     @OneToMany(cascade= CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
+    @NotBlank(message = "Please select a platform.")
     private String platform;
 
     public Game(){}
