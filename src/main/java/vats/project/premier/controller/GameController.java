@@ -50,7 +50,8 @@ public class GameController {
         List<Achievement> achievement = (List<Achievement>) achievementRepository.findAllById(achievementIds);
         newGame.setAchievements(achievement);
 
-        List<Review> review = (List<Review>)reviewRepository.findAllById(reviewIds);
+        Review review = new Review();
+        reviewRepository.findAllById(reviewIds);
         newGame.setReviews(review);
 
         gameRepository.save(newGame);

@@ -35,12 +35,14 @@ public class ReviewController {
     }
 
     @PostMapping("reviews")
-    public String processReviewsForm(@ModelAttribute @Valid Review newReview, Errors errors, Model model, @RequestParam int gameId){
+    public String processReviewsForm(@ModelAttribute @Valid Review newReview, Errors errors, Model model, @RequestParam Integer gameId){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add a Review");
             return "reviews";
         }
-        ;
+        Game games = new Game();
+        gameRepository.findById(gameId);
+        newReview.setGames(games);
 
         reviewRepository.save(newReview);
         return "redirect:/reviews";

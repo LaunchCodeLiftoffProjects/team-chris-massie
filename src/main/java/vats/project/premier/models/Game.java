@@ -3,6 +3,7 @@ package vats.project.premier.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +15,17 @@ public class Game extends AbstractEntity{
     @OneToMany(cascade=CascadeType.ALL)
     private List<Achievement> achievements = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Review> reviews = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Review reviews;
 //    @OneToMany(cascade = CascadeType.ALL)
 //    private List<Review> reviews = new ArrayList<>();
 
     public Game(){}
 
-    public Game(String platform, List<Achievement> anAchievement, List<Review> aReview){
+    public Game(String platform, List<Achievement> achievements, Review reviews) {
         this.platform = platform;
-        this.achievements = anAchievement;
-        this.reviews = aReview;
+        this.achievements = achievements;
+        this.reviews = reviews;
     }
 
     public String getPlatform() {
@@ -43,11 +44,11 @@ public class Game extends AbstractEntity{
         this.achievements = achievements;
     }
 
-    public List<Review> getReviews() {
+    public Review getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(Review reviews) {
         this.reviews = reviews;
     }
 }

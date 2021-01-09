@@ -1,23 +1,20 @@
 package vats.project.premier.models;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Review extends AbstractEntity{
 
-    @OneToMany
-    @JoinColumn
-    private  List<Game> games = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Game games;
 
     private String description;
 
     public Review() {};
 
-    public Review(List<Game> games, String description) {
+    public Review(Game games, String description) {
         this.games = games;
         this.description = description;
     }
@@ -30,11 +27,11 @@ public class Review extends AbstractEntity{
         this.description = description;
     }
 
-    public List<Game> getGames() {
+    public Game getGames() {
         return games;
     }
 
-    public void setGames(List<Game> games) {
+    public void setGames(Game games) {
         this.games = games;
     }
 }
