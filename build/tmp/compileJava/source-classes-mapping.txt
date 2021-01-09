@@ -38,11 +38,11 @@ vats/project/premier/models/User.java
  vats.project.premier.models.User
 vats/project/premier/controller/HelloController.java
  vats.project.premier.controller.HelloController
-vats/project/premier/controller/HomeController.java
- vats.project.premier.controller.HomeController
-vats/project/premier/models/Tracker.java
- vats.project.premier.models.Tracker
 vats/project/premier/models/Game.java
  vats.project.premier.models.Game
 vats/project/premier/controller/GameController.java
  vats.project.premier.controller.GameController
+vats/project/premier/models/Tracker.java
+ vats.project.premier.models.Tracker
+vats/project/premier/controller/HomeController.java
+ vats.project.premier.controller.HomeController

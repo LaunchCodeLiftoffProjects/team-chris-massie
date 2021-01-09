@@ -2,6 +2,7 @@ package vats.project.premier.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public class Game extends AbstractEntity{
 
     @OneToMany
+    @JoinColumn
     private final List<Tracker> trackers = new ArrayList<>();
 
     @OneToMany(cascade= CascadeType.ALL)

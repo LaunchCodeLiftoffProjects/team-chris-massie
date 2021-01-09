@@ -46,15 +46,17 @@
             </tr>
             <tr th:each= "tracker: ${trackers}">
                 <td>
-<!--                    <p th:text = "${tracker.game.name}"></p>-->
+                    <p th:text = "${tracker.game.name}"></p>
                 </td>
                 <td>
-<!--                    <li th:each = "achievement: ${tracker.game.achievements}">-->
-<!--                        <p th:text = "${achievement.name}"></p>-->
-<!--                    </li>-->
+                    <li th:each = "achievement: ${tracker.game.achievements}">
+                        <p th:text = "${achievement.name}"></p>
+                    </li>
                 </td>
                 <td>
-<!--                    <p th:text = "${tracker.games.description}"></p>-->
+                    <li th:each = "review: ${tracker.game.reviews}">
+                        <p th:text = "${review.name}"></p>
+                    </li>
                 </td>
             </tr>
         </table>

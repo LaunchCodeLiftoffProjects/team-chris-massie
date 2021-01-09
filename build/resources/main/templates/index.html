@@ -9,6 +9,7 @@
 <div class="container body-content">
         <h1 class="p1" style="color:white" align="center">Hello <span th:text="${user.getName}"></span> !</h1>
         <h1 class="p1" style="color:white" align="center">Welcome to the Real-Time Video Game Achievement Tracking System!</h1>
+        <h3 th:text="${myerrors}">Errors: </h3>
 
         <form class="p1" method="post" style = "max-width:500 px;">
             <script>String str = "${user.getName}"</script>
@@ -34,24 +35,28 @@
         <table class = "table table-striped">
             <tr>
                 <td>
-                    <p>ID:</p>
-                </td>
-                <td>
                     <p>Game Name</p>
                 </td>
                 <td>
-                    <p>Description</p>
+                    <p>Achievement</p>
+                </td>
+                <td>
+                    <p>Review</p>
                 </td>
             </tr>
             <tr th:each= "tracker: ${trackers}">
                 <td>
-                    <p th:text = "${tracker.id}"></p>
+                    <p th:text = "${tracker.game.name}"></p>
                 </td>
                 <td>
-                    <p th:text = "${tracker.name}"></p>
+                    <li th:each = "achievement: ${tracker.game.achievements}">
+                        <p th:text = "${achievement.name}"></p>
+                    </li>
                 </td>
                 <td>
-<!--                    <p th:text = "${tracker.games.description}"></p>-->
+                    <li th:each = "review: ${tracker.game.reviews}">
+                        <p th:text = "${review.name}"></p>
+                    </li>
                 </td>
             </tr>
         </table>
