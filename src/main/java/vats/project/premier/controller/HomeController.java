@@ -56,7 +56,9 @@ public class HomeController {
     }
 
     @PostMapping("")
-    public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model, @RequestParam int gameId, @RequestParam String userName){
+    public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model,
+                                   @RequestParam int gameId, @RequestParam String userName){
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game Tracker Information");
             model.addAttribute("achievements", achievementRepository.findAll() );

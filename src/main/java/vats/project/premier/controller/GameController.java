@@ -41,8 +41,11 @@ public class GameController {
         model.addAttribute(new Game());
         return "games";
     }
+
     @PostMapping("games")
-    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,@RequestParam String userName,  @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews){
+    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
+                                   @RequestParam String userName,  @RequestParam List<Integer>  achievements,
+                                   @RequestParam List<Integer> reviews){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
             model.addAttribute("myerrors", errors.toString());
@@ -99,7 +102,10 @@ public class GameController {
     }
 
     @PostMapping("update")
-    public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors, @RequestParam int gameId, @RequestParam String platform, @RequestParam String userName, @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews) {
+    public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors,
+                                         @RequestParam int gameId, @RequestParam String platform,
+                                         @RequestParam String userName, @RequestParam List<Integer>  achievements,
+                                         @RequestParam List<Integer> reviews) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Update Game");
