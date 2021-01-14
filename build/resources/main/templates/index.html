@@ -11,11 +11,11 @@
         <h1 class="p1" style="color:white" align="center">Welcome to the Real-Time Video Game Achievement Tracking System!</h1>
         <h3 th:text="${myerrors}">Errors: </h3>
 
-        <form class="p1" method="post" style = "max-width:500 px;">
+        <form class="p1" method="post" style = "max-width:600 px;">
             <script>String str = "${user.getName}"</script>
             <div class="form-group">
-                <label style="color:white" th:for="user">User Name: </label>
-                <select name = "userName">
+<!--                <label style="color:white" th:for="user">User Name: </label>-->
+                <select name = "userName" hidden>
                     <option th:text="${user.getName}" th:value="${user.getName}">
                     </option>
                 </select>

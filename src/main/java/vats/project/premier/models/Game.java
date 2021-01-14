@@ -21,11 +21,13 @@ public class Game extends AbstractEntity{
     private List<Review> reviews = new ArrayList<>();
 
     private String platform;
+    private String userName;
 
     public Game(){}
 
-    public Game(String platform, List<Achievement> anAchievement, List<Review> aReview){
+    public Game(String platform, String userName, List<Achievement> anAchievement, List<Review> aReview){
         this.platform = platform;
+        this.userName = userName;
         this.achievements = anAchievement;
         this.reviews = aReview;
     }
@@ -52,5 +54,13 @@ public class Game extends AbstractEntity{
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

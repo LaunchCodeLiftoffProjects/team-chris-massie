@@ -76,7 +76,4 @@ public class HomeController {
         trackerRepository.save(newTracker);
         return "redirect:";
     }
-
-
-
 }

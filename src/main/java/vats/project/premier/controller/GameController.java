@@ -42,7 +42,7 @@ public class GameController {
         return "games";
     }
     @PostMapping("games")
-    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model, @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews){
+    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,@RequestParam String userName,  @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
             model.addAttribute("myerrors", errors.toString());
@@ -54,6 +54,8 @@ public class GameController {
         List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
         newGame.setReviews(reviewObj);
 
+        newGame.setUserName(userName);
+
         gameRepository.save(newGame);
         return "redirect:/games";
     }
@@ -64,5 +66,60 @@ public class GameController {
         model.addAttribute(new Game());
         model.addAttribute("categories", gameRepository.findAll());
         return "create";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteGameForm(Model model) {
+
+        model.addAttribute("title", "Delete Games");
+        model.addAttribute("games", gameRepository.findAll());
+        return "delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteGamesForm(@RequestParam(required = false) int[] gameIds) {
+
+        if (gameIds != null) {
+            for (int id : gameIds) {
+                gameRepository.deleteById(id);
+            }
+        }
+        return "redirect:/games";
+    }
+
+    @GetMapping("update")
+    public String displayUpdateGameForm(Model model) {
+        model.addAttribute("Games form", "Games");
+        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("games", gameRepository.findAll());
+        model.addAttribute("reviews", reviewRepository.findAll());
+        model.addAttribute("title", "Update Games");
+        model.addAttribute(new Game());
+        return "update";
+    }
+
+    @PostMapping("update")
+    public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors, @RequestParam int gameId, @RequestParam String platform, @RequestParam String userName, @RequestParam List<Integer>  achievements, @RequestParam List<Integer> reviews) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Update Game");
+            model.addAttribute("myerrors", errors.toString());
+            return "games";
+        }
+
+        Game game = gameRepository.findById(gameId).get();
+        System.out.println(gameId);
+        List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
+        game.setAchievements(achievementObj);
+
+        List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
+        game.setReviews(reviewObj);
+
+        game.setUserName(userName);
+        game.setPlatform(platform);
+
+        gameRepository.save(game);
+        return "redirect:/games";
+
     }
 }

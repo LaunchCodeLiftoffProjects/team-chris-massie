@@ -9,10 +9,14 @@
 <div class="container body-content">
     <h1 class="p1" style="color:white">Welcome to Video Game Achievement Tracking System!</h1>
     <h2 class="p1" style="color:white">Add a game</h2>
-    <h3 th:text="${myerrors}">Errors: </h3>
+    <h3 th:text="${myerrors}">Errors: Cannot use duplicate achievements and reviews</h3>
 
      <form method="post" style="max-width:600px;" >
         <div class= "form-group">
+            <select name = "userName" hidden>
+                <option th:text="${user.getName}" th:value="${user.getName}">
+                </option>
+            </select>
             <label class="p1" th:for="name" style="color:white">Game Name</label>
             <input class="form-control" th:field="${game.name}">
             <p class="error" th:errors="${game.name}"></p>
@@ -46,6 +50,11 @@
 
         <input type="submit" value="Create game" />
     </form>
+    <br>
+    <a style="color:red" th:href="@{/delete}">Delete Games</a>
+    <a style="color:blue" th:href="@{/update}">Update Games</a>
+    <br>
+
     <br>
     <p style="color:white">Submitted Games</p>
     <div>
