@@ -44,19 +44,25 @@ public class GameController {
 
     @PostMapping("games")
     public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
-                                   @RequestParam String userName,  @RequestParam List<Integer>  achievements,
-                                   @RequestParam List<Integer> reviews){
+                                   @RequestParam String userName,  @RequestParam(required = false) List<Integer>  achievements,
+                                   @RequestParam(required = false) List<Integer> reviews){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
             model.addAttribute("myerrors", errors.toString());
             return "games";
         }
-        List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
-        newGame.setAchievements(achievementObj);
 
-        List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
-        newGame.setReviews(reviewObj);
-
+        if(achievements == null) {
+            return "redirect:/games";
+        } else {
+            List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
+            newGame.setAchievements(achievementObj);
+        } if(reviews == null) {
+            return "redirect:/games";
+        } else {
+            List<Review> reviewObj = (List<Review>) reviewRepository.findAllById(reviews);
+            newGame.setReviews(reviewObj);
+        }
         newGame.setUserName(userName);
 
         gameRepository.save(newGame);
@@ -103,9 +109,9 @@ public class GameController {
 
     @PostMapping("update")
     public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors,
-                                         @RequestParam int gameId, @RequestParam String platform,
-                                         @RequestParam String userName, @RequestParam List<Integer>  achievements,
-                                         @RequestParam List<Integer> reviews) {
+                                         @RequestParam int gameId, @RequestParam(required = false) String platform,
+                                         @RequestParam String userName, @RequestParam(required = false) List<Integer>  achievements,
+                                         @RequestParam(required = false) List<Integer> reviews) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Update Game");
@@ -116,14 +122,18 @@ public class GameController {
         Game game = gameRepository.findById(gameId).get();
         System.out.println(gameId);
 
-        List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
-        game.setAchievements(achievementObj);
-
-        List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
-        game.setReviews(reviewObj);
-
+        if(achievements != null) {
+            List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
+            game.setAchievements(achievementObj);
+        }
+        if (reviews != null) {
+            List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
+            game.setReviews(reviewObj);
+        }
+        if (platform != null) {
+            game.setPlatform(platform);
+        }
         game.setUserName(userName);
-        game.setPlatform(platform);
 
         gameRepository.save(game);
         return "redirect:/games";
