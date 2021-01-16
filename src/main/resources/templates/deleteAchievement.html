@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container toTheLeft">
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h1 class="p1" style="color:white">Welcome to Video Game Achievement Tracking System!</h1>
+    <h2 class="p1" style="color:white">Delete achievements</h2>
+
+    <form method="post">
+
+        <th:block th:each="achievement : ${achievements}">
+            <div class="form-group">
+                <label style="color:white" th:text="${achievement.name}"></label>
+                <input type="checkbox" name="achievementIds" th:value="${achievement.id}" class="form-control">
+            </div>
+        </th:block>
+
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+</div>
+</body>
+</html>

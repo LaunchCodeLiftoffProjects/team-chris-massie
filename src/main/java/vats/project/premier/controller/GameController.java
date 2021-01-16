@@ -115,6 +115,7 @@ public class GameController {
 
         Game game = gameRepository.findById(gameId).get();
         System.out.println(gameId);
+
         List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
         game.setAchievements(achievementObj);
 
