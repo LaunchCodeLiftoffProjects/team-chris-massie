@@ -47,21 +47,21 @@ public class GameController {
     public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model, @RequestParam(required = false) List<Integer>  achievements, @RequestParam(required = false) Review reviews){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
-            return "game";
+            return "games";
         }
         if(achievements == null) {
-            return "redirect:/game/games";
+            return "redirect:/games";
         } else {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
             newGame.setAchievements(achievementObj);
         } if(reviews == null) {
-            return "redirect:/game/games";
+            return "redirect:/games";
         } else {
             Review reviewObj = new Review();
             newGame.setReviews(reviewObj);
         }
         gameRepository.save(newGame);
-        return "redirect:/game/games";
+        return "redirect:/games";
     }
 
 

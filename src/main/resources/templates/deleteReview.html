@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container toTheLeft">
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h2 class="p1" style="color:white">Delete Reviews</h2>
+
+    <form method="post">
+
+        <th:block th:each="review : ${reviews}">
+            <div class="form-group">
+                <label style="color:white" th:text="${review.description}"></label>
+                <input type="checkbox" name="reviewIds" th:value="${review.id}" class="form-control">
+            </div>
+        </th:block>
+
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+</div>
+</body>
+</html>

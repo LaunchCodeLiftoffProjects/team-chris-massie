@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import vats.project.premier.models.Game;
 import vats.project.premier.models.Review;
 import vats.project.premier.models.data.GameRepository;
@@ -49,6 +46,22 @@ public class ReviewController {
         newReview.setGame(game);
         reviewRepository.save(newReview);
         return "redirect:/reviews";
+    }
+
+    @GetMapping("deleteReview")
+    public String displayDeleteReviewForm(Model model) {
+        model.addAttribute("title", "Delete Reviews");
+        model.addAttribute("reviews", reviewRepository.findAll());
+        return "deleteReview";
+    }
+    @PostMapping("deleteReview")
+    public String processDeleteReviewForm(@RequestParam(required = false) int[] reviewIds) {
+        if (reviewIds != null) {
+            for (int id : reviewIds) {
+                reviewRepository.deleteById(id);
+            }
+        }
+        return "deleteReview";
     }
 
 }
