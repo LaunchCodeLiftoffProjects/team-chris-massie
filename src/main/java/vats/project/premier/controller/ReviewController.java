@@ -26,24 +26,27 @@ public class ReviewController {
 
     @RequestMapping("reviews")
     public String displayReviewsForm(Model model) {
-        model.addAttribute("Reviews form", "Reviews");
-        model.addAttribute("games", "Games");
-        model.addAttribute("games", gameRepository.findAll());
+        model.addAttribute("reviews", "Reviews");
+        model.addAttribute("game", "Games");
+        model.addAttribute("game", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
         model.addAttribute(new Review());
         return "reviews";
     }
 
     @PostMapping("reviews")
-    public String processReviewsForm(@ModelAttribute @Valid Review newReview, Errors errors, Model model, @RequestParam Integer gameId){
+    public String processReviewsForm(@ModelAttribute @Valid Review newReview, Errors errors, Model model, @RequestParam Integer gameId,
+                                     @RequestParam String description){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add a Review");
+            model.addAttribute("description", newReview.getDescription());
+            model.addAttribute("reviews", "reviews");
             return "reviews";
         }
-        Game games = new Game();
-        gameRepository.findById(gameId);
-        newReview.setGames(games);
-
+        Game game = gameRepository.findById(gameId).get();
+        game.setReviews(new Review(game, description));
+        gameRepository.save(game);
+        newReview.setGame(game);
         reviewRepository.save(newReview);
         return "redirect:/reviews";
     }

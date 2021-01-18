@@ -11,13 +11,13 @@
     <div class="form-group">
         <label style="color:white" th:for="gameId">Game: </label>
         <select name = "gameId">
-            <option th:each = "game: ${games}" th:text="${game.name}" th:value="${game.id}">
+            <option th:each = "game: ${game}" th:text="${game.name}"  th:value="${game.id}">
             </option>
         </select>
     </div>
     <div class="mb-3">
-        <label th:for="review" style="color:white" class="form-label">Review</label>
-        <textarea class="form-control" th:field="${review.description}"></textarea>
+        <label th:for="description" style="color:white" class="form-label">Review</label>
+        <textarea name= "description" class="form-control" th:value="${review.description}"></textarea>
         <p class="error" th:errors="${review.description}"></p>
     </div>
 <!--    <p></p>-->
@@ -40,19 +40,16 @@
         <table class = "table table-striped">
             <thead>
             <tr>
-                    <td>Game</td>
-                    <td>Review</td>
-                </tr>
-            </thead>
-            <tbody>
-            <tr th:each= "review: ${reviews}">
-                <td><span th:text = "${review.name}"></span>
-                </td>
-                <td><span th:text = "${review.description}"></span>
-                </td>
+                <td>Game</td>
+                <td>Review</td>
             </tr>
-            </tbody>
+            </thead>
+        <tr th:each="game : ${game}">
+        <td th:text="${game.name}"></td>
+        <td th:text="${game.reviews?.description}"></td>
+        </tr>
         </table>
+
     </div>
 
 </div>

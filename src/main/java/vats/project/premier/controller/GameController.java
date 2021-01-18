@@ -36,27 +36,34 @@ public class GameController {
     public String displayGamesForm(Model model) {
         model.addAttribute("Games form", "Games");
         model.addAttribute("achievements", achievementRepository.findAll());
-        model.addAttribute("games", gameRepository.findAll());
+        model.addAttribute("game", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
         model.addAttribute(new Game());
+        Game newGame = new Game("Test", "Sonic");
+        gameRepository.save(newGame);
         return "games";
     }
     @PostMapping("games")
-    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model, @RequestParam List<Integer>  achievementIds, @RequestParam List<Integer> reviewIds){
+    public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model, @RequestParam(required = false) List<Integer>  achievements, @RequestParam(required = false) Review reviews){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game");
             return "game";
         }
-        List<Achievement> achievement = (List<Achievement>) achievementRepository.findAllById(achievementIds);
-        newGame.setAchievements(achievement);
-
-        Review review = new Review();
-        reviewRepository.findAllById(reviewIds);
-        newGame.setReviews(review);
-
+        if(achievements == null) {
+            return "redirect:/game/games";
+        } else {
+            List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
+            newGame.setAchievements(achievementObj);
+        } if(reviews == null) {
+            return "redirect:/game/games";
+        } else {
+            Review reviewObj = new Review();
+            newGame.setReviews(reviewObj);
+        }
         gameRepository.save(newGame);
-        return "games";
+        return "redirect:/game/games";
     }
+
 
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {

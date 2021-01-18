@@ -28,6 +28,11 @@ public class Game extends AbstractEntity{
         this.reviews = reviews;
     }
 
+    public Game(String platform, String name) {
+        this.platform = platform;
+        this.name = name;
+    }
+
     public String getPlatform() {
         return platform;
     }

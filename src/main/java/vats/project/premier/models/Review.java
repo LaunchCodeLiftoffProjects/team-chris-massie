@@ -8,14 +8,14 @@ import java.util.List;
 public class Review extends AbstractEntity{
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Game games;
+    private Game game;
 
     private String description;
 
     public Review() {};
 
-    public Review(Game games, String description) {
-        this.games = games;
+    public Review(Game game, String description) {
+        this.game = game;
         this.description = description;
     }
 
@@ -27,11 +27,11 @@ public class Review extends AbstractEntity{
         this.description = description;
     }
 
-    public Game getGames() {
-        return games;
+    public Game getGame() {
+        return game;
     }
 
-    public void setGames(Game games) {
-        this.games = games;
+    public void setGame(Game games) {
+        this.game = game;
     }
 }
