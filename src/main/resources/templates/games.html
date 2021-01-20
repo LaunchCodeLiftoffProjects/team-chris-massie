@@ -84,12 +84,12 @@
                 </td>
                 <td>
                     <li  th:each = "achievement: ${game.achievements}">
-                        <a h:href="'/details/gameDetails?achievementId=' + ${achievement.id}" th:text = "${achievement.name}"></a>
+                        <a h:href="'/gameDetails?gameId=' + ${achievement.id}" th:text = "${achievement.name}"></a>
                     </li>
                 </td>
                 <td>
                     <li th:each = "review: ${game.reviews}">
-                        <a h:href="'/details/gameDetails?reviewId=' + ${review.id}" th:text = "${review.name}"></a>
+                        <a h:href="'/gameDetails?gameId=' + ${review.id}" th:text = "${review.name}"></a>
 
                     </li>
                 </td>

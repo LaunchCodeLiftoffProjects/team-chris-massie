@@ -40,17 +40,13 @@
                     <p>Description</p>
                 </td>
             </tr>
-            <tr th:each= "game: ${games}">
-                <td>
-                    <p th:text = "${game.name}"></p>
-                </td>
-            </tr>
             <tr th:each= "review: ${reviews}">
+                <td>
+                    <p th:text = "${review.id}"></p>
+                </td>
                 <td>
                     <p th:text = "${review.name}"></p>
                 </td>
-            </tr>
-            <tr th:each= "review: ${reviews}">
                 <td>
                     <p th:text = "${review.description}"></p>
                 </td>

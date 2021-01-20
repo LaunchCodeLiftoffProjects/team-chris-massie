@@ -76,7 +76,9 @@ public class GameController {
                                      @RequestParam(required = false) List<Integer>  achievements,
                                      @RequestParam(required = false) List<Integer> reviews) {
 
-
+        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("games", gameRepository.findAll());
+        model.addAttribute("reviews", reviewRepository.findAll());
         Optional<Game> result = gameRepository.findById(gameId);
 
         Game game = result.get();
