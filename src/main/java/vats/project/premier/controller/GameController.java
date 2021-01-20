@@ -18,6 +18,7 @@ import vats.project.premier.models.data.ReviewRepository;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("")
@@ -67,6 +68,39 @@ public class GameController {
 
         gameRepository.save(newGame);
         return "redirect:/games";
+    }
+
+    @GetMapping("gameDetails")
+    public String displayGameDetails(@RequestParam Integer gameId, Model model, Error error,
+                                     @RequestParam(required = false) String platform,
+                                     @RequestParam(required = false) List<Integer>  achievements,
+                                     @RequestParam(required = false) List<Integer> reviews) {
+
+
+        Optional<Game> result = gameRepository.findById(gameId);
+
+        Game game = result.get();
+        model.addAttribute("title", game.getName() + "Details");
+        model.addAttribute("game", game);
+        model.addAttribute("platform", platform);
+
+        if(achievements != null) {
+            List<Achievement> achievementObj =  game.getAchievements();
+            model.addAttribute("achievements", achievementObj);
+        } else {
+            String achievementObj = "Create Achievement?";
+            model.addAttribute("achievements", achievementObj);
+        }
+        if (reviews != null) {
+                List<Review> reviewObj = game.getReviews();
+                model.addAttribute("reviews", reviewObj);
+        } else {
+            String reviewObj = "Create Review?";
+            model.addAttribute("reviews", reviewObj);
+        }
+
+
+        return "gameDetails";
     }
 
     @GetMapping("create")
@@ -122,6 +156,8 @@ public class GameController {
         Game game = gameRepository.findById(gameId).get();
         System.out.println(gameId);
 
+        String gamePlatform = game.getPlatform();
+
         if(achievements != null) {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
             game.setAchievements(achievementObj);
@@ -130,7 +166,10 @@ public class GameController {
             List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
             game.setReviews(reviewObj);
         }
-        if (platform != null) {
+        if (gamePlatform != null) {
+            game.setPlatform(gamePlatform);
+
+        } else {
             game.setPlatform(platform);
         }
         game.setUserName(userName);

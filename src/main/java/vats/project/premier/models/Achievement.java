@@ -15,6 +15,8 @@ public class Achievement extends AbstractEntity{
     @NotBlank(message = "Please enter description.")
     private String description;
 
+
+
     public Achievement(){}
 
     public Achievement(String description){
