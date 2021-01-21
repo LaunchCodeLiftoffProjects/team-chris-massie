@@ -2,24 +2,22 @@ package vats.project.premier.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Game extends AbstractEntity{
 
-    @OneToMany
-    @JoinColumn
-    private final List<Tracker> trackers = new ArrayList<>();
+    private String platform;
 
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Achievement> achievements = new ArrayList<>();
 
-    @OneToMany(cascade= CascadeType.ALL)
-    private List<Review> reviews = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Review reviews;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Review> reviews = new ArrayList<>();
 
     @NotBlank(message = "Please select a platform.")
     private String platform;
@@ -27,11 +25,16 @@ public class Game extends AbstractEntity{
 
     public Game(){}
 
-    public Game(String platform, String userName, List<Achievement> anAchievement, List<Review> aReview){
+    public Game(String platform, String userName, List<Achievement> achievements, Review reviews) {
         this.platform = platform;
         this.userName = userName;
-        this.achievements = anAchievement;
-        this.reviews = aReview;
+        this.achievements = achievements;
+        this.reviews = reviews;
+    }
+
+    public Game(String platform, String name) {
+        this.platform = platform;
+        this.name = name;
     }
 
     public String getPlatform() {
@@ -50,11 +53,11 @@ public class Game extends AbstractEntity{
         this.achievements = achievements;
     }
 
-    public List<Review> getReviews() {
+    public Review getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(Review reviews) {
         this.reviews = reviews;
     }
 

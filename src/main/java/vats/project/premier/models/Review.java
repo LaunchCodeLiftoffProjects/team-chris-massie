@@ -1,25 +1,24 @@
 package vats.project.premier.models;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Review extends AbstractEntity{
 
-    @OneToMany
-    @JoinColumn
-    private final List<Game> games = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Game game;
 
-    @NotBlank(message = "Please enter description.")
+    @NotBlank(message = "Please select a game and enter a review.")
     private String description;
 
     public Review() {};
 
-    public Review(String description){
+    public Review(Game game, String description) {
+        this.game = game;
         this.description = description;
     }
 
@@ -31,4 +30,11 @@ public class Review extends AbstractEntity{
         this.description = description;
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game games) {
+        this.game = game;
+    }
 }

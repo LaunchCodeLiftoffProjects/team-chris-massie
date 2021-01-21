@@ -42,7 +42,6 @@ public class GameController {
         model.addAttribute(new Game());
         return "games";
     }
-
     @PostMapping("games")
     public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
                                    @RequestParam String userName,  @RequestParam(required = false) List<Integer>  achievements,
@@ -61,7 +60,7 @@ public class GameController {
         } if(reviews == null) {
             return "redirect:/games";
         } else {
-            List<Review> reviewObj = (List<Review>) reviewRepository.findAllById(reviews);
+            Review reviewObj = new Review();
             newGame.setReviews(reviewObj);
         }
         newGame.setUserName(userName);
