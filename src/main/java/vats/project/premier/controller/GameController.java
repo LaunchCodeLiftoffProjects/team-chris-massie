@@ -93,7 +93,7 @@ public class GameController {
             model.addAttribute("achievements", achievementObj);
         }
         if (reviews != null) {
-                List<Review> reviewObj = game.getReviews();
+                Review reviewObj = new Review();
                 model.addAttribute("reviews", reviewObj);
         } else {
             String reviewObj = "Create Review?";
@@ -128,7 +128,7 @@ public class GameController {
                 gameRepository.deleteById(id);
             }
         }
-        return "redirect:/games";
+        return "redirect:games";
     }
 
     @GetMapping("update")
@@ -146,7 +146,7 @@ public class GameController {
     public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors,
                                          @RequestParam int gameId, @RequestParam(required = false) String platform,
                                          @RequestParam String userName, @RequestParam(required = false) List<Integer>  achievements,
-                                         @RequestParam(required = false) List<Integer> reviews) {
+                                         @RequestParam(required = false) Integer reviews) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Update Game");
@@ -164,7 +164,7 @@ public class GameController {
             game.setAchievements(achievementObj);
         }
         if (reviews != null) {
-            List<Review> reviewObj = (List<Review>)reviewRepository.findAllById(reviews);
+            Review reviewObj = game.getReviews();
             game.setReviews(reviewObj);
         }
         if (gamePlatform != null) {

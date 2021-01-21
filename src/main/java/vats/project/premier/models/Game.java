@@ -3,13 +3,13 @@ package vats.project.premier.models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Game extends AbstractEntity{
-
-    private String platform;
 
     @OneToMany(cascade=CascadeType.ALL)
     private List<Achievement> achievements = new ArrayList<>();

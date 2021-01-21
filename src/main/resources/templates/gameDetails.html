@@ -39,8 +39,8 @@
             <a th:href="'/achievements?gameId=' + ${game.id}">Add Achievement?</a>
         </td>
         <td>
-            <li th:each = "review: ${game.reviews}">
-                <p th:text = "${review.name}"></p>
+            <li>
+                <p th:text = "${game.reviews}"></p>
             </li>
             <a th:href="'/reviews?gameId=' + ${game.id}">Add Review?</a>
         </td>
