@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:h="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+
+<body class="container toTheLeft">
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h2 class="p1" style="color:white"><span th:text="${game.name}"></span> details!</h2>
+
+<div>
+<table class="table table-striped" bgcolor="white">
+    <tr>
+        <td>
+            <p>Name</p>
+        </td>
+        <td>
+            <p>Platform</p>
+        </td>
+        <td>
+            <p>Achievement</p>
+        </td>
+        <td>
+            <p>Review</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p th:text = "${game.name}"></p>
+        </td>
+        <td>
+            <p th:text = "${game.platform}"></p>
+        </td>
+        <td>
+            <li th:each = "achievement: ${game.achievements}">
+                <p th:text = "${achievement.name}"></p>
+            </li>
+            <a th:href="'/achievements?gameId=' + ${game.id}">Add Achievement?</a>
+        </td>
+        <td>
+            <li th:each = "review: ${game.reviews}">
+                <p th:text = "${review.name}"></p>
+            </li>
+            <a th:href="'/reviews?gameId=' + ${game.id}">Add Review?</a>
+        </td>
+    </tr>
+</table>
+</div>
+
+
+
+</body>
+</html>

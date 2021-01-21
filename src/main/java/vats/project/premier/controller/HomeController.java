@@ -16,7 +16,6 @@ import vats.project.premier.models.data.ReviewRepository;
 import vats.project.premier.models.data.TrackerRepository;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -57,22 +56,26 @@ public class HomeController {
     }
 
     @PostMapping("")
-    public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model, @RequestParam List<Integer> gameId, @RequestParam String userName){
+    public String processGamesForm(@ModelAttribute @Valid Tracker newTracker, Errors errors, Model model,
+                                   @RequestParam int gameId, @RequestParam String userName){
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Game Tracker Information");
+            model.addAttribute("achievements", achievementRepository.findAll() );
+            model.addAttribute("games", gameRepository.findAll());
+            model.addAttribute("reviews", reviewRepository.findAll());
+            model.addAttribute("trackers", trackerRepository.findAll());
             model.addAttribute("myerrors", errors.toString());
             return "index";
         }
 
-        List<Game> game = (List<Game>) gameRepository.findAllById(gameId);
-        newTracker.setGames(game);
+        Game game = gameRepository.findById(gameId).orElse(new Game());
+        newTracker.setGame(game);
 
         newTracker.setUserName(userName);
+        newTracker.setName(game.name);
 
         trackerRepository.save(newTracker);
-        return "index";
+        return "redirect:";
     }
-
-
-
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container toTheLeft">
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+    <h1 class="p1" style="color:white">Welcome to Video Game Achievement Tracking System!</h1>
+    <h2 class="p1" style="color:white">Add a game</h2>
+    <h3 th:text="${myerrors}">Errors: </h3>
+
+    <form method="post" style="max-width:600px;" >
+        <div class= "form-group">
+            <select name = "userName" hidden>
+                <option th:text="${user.getName}" th:value="${user.getName}">
+                </option>
+            </select>
+            <label class="p1" th:for="games" style="color:white">Game Name</label>
+                <select name = "gameId" >
+                    <option th:each = "game: ${games}"
+                            th:text="${game.name}"
+                            th:value="${game.id}">
+                    </option>
+                </select>
+        </div>
+
+        <div class="form-group">
+            <label class="p1" th:for="platform" style="color:white">Platform</label>
+            <input class="form-control" type="text" name= "platform" />
+
+        </div>
+
+        <div class="form-group">
+            <label th:for="achievements" style="color:white">Achievements </label>
+            <select name = "achievements" multiple>
+                <option th:each = "achievement: ${achievements}"
+                        th:text="${achievement.name}"
+                        th:value="${achievement.id}">
+                </option>
+            </select>
+            <a th:href="@{/achievements}"> Add Achievements</a>
+        </div>
+
+        <div class="form-group">
+            <label th:for="reviews" style="color:white">Reviews </label>
+            <select name = "reviews" multiple>
+                <option th:each = "review: ${reviews}" th:text="${review.description}" th:value="${review.id}">
+                </option>
+            </select>
+            <a th:href="@{/reviews}"> Add Reviews</a>
+        </div>
+
+        <input type="submit" value="Update game" />
+    </form>
+</div>
+</body>
+</html>

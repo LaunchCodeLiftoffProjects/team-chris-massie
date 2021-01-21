@@ -2,6 +2,7 @@ package vats.project.premier.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 public class Game extends AbstractEntity{
 
     @OneToMany
+    @JoinColumn
     private final List<Tracker> trackers = new ArrayList<>();
 
     @OneToMany(cascade= CascadeType.ALL)
@@ -21,11 +23,13 @@ public class Game extends AbstractEntity{
 
     @NotBlank(message = "Please select a platform.")
     private String platform;
+    private String userName;
 
     public Game(){}
 
-    public Game(String platform, List<Achievement> anAchievement, List<Review> aReview){
+    public Game(String platform, String userName, List<Achievement> anAchievement, List<Review> aReview){
         this.platform = platform;
+        this.userName = userName;
         this.achievements = anAchievement;
         this.reviews = aReview;
     }
@@ -52,5 +56,13 @@ public class Game extends AbstractEntity{
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
