@@ -38,6 +38,8 @@ public class ReviewController {
             model.addAttribute("title", "Add a Review");
             model.addAttribute("description", newReview.getDescription());
             model.addAttribute("reviews", "reviews");
+            model.addAttribute("game", gameRepository.findAll());
+            model.addAttribute("reviews", reviewRepository.findAll());
             return "reviews";
         }
         Game game = gameRepository.findById(gameId).get();

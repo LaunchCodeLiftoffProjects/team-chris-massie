@@ -10,14 +10,14 @@
     <form method="post" style="max-width:600px;">
     <div class="form-group">
         <label style="color:white" th:for="gameId">Game: </label>
-        <select name = "gameId">
+        <select class="custom-select-lg mb-3" name = "gameId">
             <option th:each = "game: ${game}" th:text="${game.name}"  th:value="${game.id}">
             </option>
         </select>
     </div>
     <div class="mb-3">
         <label th:for="description" style="color:white" class="form-label">Review</label>
-        <textarea name= "description" class="form-control" th:value="${review.description}"></textarea>
+        <textarea rows="8" name= "description" class="form-control" th:value="${review.description}"></textarea>
         <p class="error" th:errors="${review.description}"></p>
     </div>
 <!--    <p></p>-->
@@ -32,10 +32,13 @@
 <!--            <input class="form-control" th:field="${review.description}">-->
 <!--            <p class="error" th:errors="${review.description}"></p>-->
 <!--        </div>-->
-
+    <br>
+        <br>
         <input type="submit" value="Create Review" />
 
     </form>
+    <br>
+    <br>
     <div>
         <table class = "table table-striped">
             <thead>
@@ -53,7 +56,7 @@
     </div>
 
     <a href="/deleteReview"><input type="submit" value="Delete Review" class="btn btn-danger" ></a>
-
+    <br>
     <br>
 </div>
 </body>
