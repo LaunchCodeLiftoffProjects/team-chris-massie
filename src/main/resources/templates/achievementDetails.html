@@ -7,7 +7,7 @@
 <div th:replace="fragments :: page-header"></div>
 
 <div class="container body-content">
-    <h2 class="p1" style="color:white"><span th:text="${game.name}"></span> details!</h2>
+    <h2 class="p1" style="color:white"><span th:text="${game.achievement.name}"></span> details!</h2>
 
     <div>
         <table class="table table-striped" bgcolor="white">
@@ -16,13 +16,7 @@
                     <p>Name</p>
                 </td>
                 <td>
-                    <p>Platform</p>
-                </td>
-                <td>
                     <p>Achievement</p>
-                </td>
-                <td>
-                    <p>Review</p>
                 </td>
             </tr>
             <tr>
@@ -36,16 +30,15 @@
                     <li th:each = "achievement: ${game.achievements}">
                         <p th:text = "${achievement.name}"></p>
                     </li>
-                    <a th:href="'/achievements?gameId=' + ${game.id}">Add Achievement?</a>
-                </td>
-                <td>
-                    <li>
-                        <p th:text = "${game.review}"></p>
+                    <li th:each = "achievement: ${game.achievements}">
+                        <p th:text = "${achievement.description}"></p>
                     </li>
-                    <a th:href="'/reviews?gameId=' + ${game.id}">Add Review?</a>
+                    <a th:href="'/achievements?gameId=' + ${game.id}">Add Achievement?</a>
                 </td>
             </tr>
         </table>
     </div>
-</div>
+
+
+
 </html>

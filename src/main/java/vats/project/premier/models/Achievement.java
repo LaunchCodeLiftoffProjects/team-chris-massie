@@ -16,7 +16,6 @@ public class Achievement extends AbstractEntity{
     private String description;
 
 
-
     public Achievement(){}
 
     public Achievement(String description){
@@ -31,4 +30,7 @@ public class Achievement extends AbstractEntity{
         this.description = description;
     }
 
+    public List<Game> getGames() {
+        return games;
+    }
 }

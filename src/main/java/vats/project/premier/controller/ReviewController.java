@@ -43,7 +43,7 @@ public class ReviewController {
             return "reviews";
         }
         Game game = gameRepository.findById(gameId).get();
-        game.setReviews(new Review(game, description));
+        game.setReview(newReview.getGame().getReview());
         gameRepository.save(game);
         newReview.setGame(game);
         reviewRepository.save(newReview);

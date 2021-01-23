@@ -42,26 +42,28 @@ public class GameController {
         model.addAttribute(new Game());
         return "games";
     }
+
     @PostMapping("games")
     public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
-                                   @RequestParam String userName,  @RequestParam(required = false) List<Integer>  achievements,
-                                   @RequestParam(required = false) List<Integer> reviews){
+                                   @RequestParam String userName,
+                                   @RequestParam(required = false) List<Integer>  achievements,
+                                   @RequestParam(required = false) Integer review){
         if (errors.hasErrors()) {
+            model.addAttribute("Games form", "Games");
+            model.addAttribute("achievements", achievementRepository.findAll() );
+            model.addAttribute("games", gameRepository.findAll());
+            model.addAttribute("reviews", reviewRepository.findAll());
             model.addAttribute("title", "Add Game");
             model.addAttribute("myerrors", errors.toString());
             return "games";
         }
 
-        if(achievements == null) {
-            return "redirect:/games";
-        } else {
+        if(achievements != null) {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
             newGame.setAchievements(achievementObj);
-        } if(reviews == null) {
-            return "redirect:/games";
-        } else {
+        } if(review != null) {
             Review reviewObj = new Review();
-            newGame.setReviews(reviewObj);
+            newGame.setReview(reviewObj);
         }
         newGame.setUserName(userName);
 
@@ -73,11 +75,11 @@ public class GameController {
     public String displayGameDetails(@RequestParam Integer gameId, Model model, Error error,
                                      @RequestParam(required = false) String platform,
                                      @RequestParam(required = false) List<Integer>  achievements,
-                                     @RequestParam(required = false) List<Integer> reviews) {
+                                     @RequestParam(required = false) Integer review) {
 
         model.addAttribute("achievements", achievementRepository.findAll() );
         model.addAttribute("games", gameRepository.findAll());
-        model.addAttribute("reviews", reviewRepository.findAll());
+        model.addAttribute("review", reviewRepository.findAll());
         Optional<Game> result = gameRepository.findById(gameId);
 
         Game game = result.get();
@@ -92,16 +94,44 @@ public class GameController {
             String achievementObj = "Create Achievement?";
             model.addAttribute("achievements", achievementObj);
         }
-        if (reviews != null) {
+        if (review != null) {
                 Review reviewObj = new Review();
-                model.addAttribute("reviews", reviewObj);
+                model.addAttribute("review", reviewObj);
         } else {
             String reviewObj = "Create Review?";
-            model.addAttribute("reviews", reviewObj);
+            model.addAttribute("review", reviewObj);
         }
 
 
         return "gameDetails";
+    }
+
+    @GetMapping("achievementDetails")
+    public String displayAchievementDetails(@RequestParam Integer achievementId, Model model, Error error,
+                                     @RequestParam(required = false) String platform,
+                                     @RequestParam(required = false) Achievement  achievements) {
+
+        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("games", gameRepository.findAll());
+        model.addAttribute("review", reviewRepository.findAll());
+        Optional<Achievement> result = achievementRepository.findById(achievementId);
+
+        Achievement achievement = result.get();
+        model.addAttribute("title", achievement.getName() + "Details");
+        model.addAttribute("game", achievement);
+        model.addAttribute("platform", platform);
+
+        if(achievements != null) {
+            Achievement achievementObj =  result.get();
+            model.addAttribute("achievements", achievementObj);
+        } else {
+            String achievementObj = "Create Achievement?";
+            model.addAttribute("achievements", achievementObj);
+        }
+
+
+
+        return "achievementDetails";
     }
 
     @GetMapping("create")
@@ -164,8 +194,8 @@ public class GameController {
             game.setAchievements(achievementObj);
         }
         if (reviews != null) {
-            Review reviewObj = game.getReviews();
-            game.setReviews(reviewObj);
+            Review reviewObj = game.getReview();
+            game.setReview(reviewObj);
         }
         if (gamePlatform != null) {
             game.setPlatform(gamePlatform);

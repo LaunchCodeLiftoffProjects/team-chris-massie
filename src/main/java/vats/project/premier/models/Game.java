@@ -15,7 +15,7 @@ public class Game extends AbstractEntity{
     private List<Achievement> achievements = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Review reviews;
+    private Review review;
 //    @OneToMany(cascade = CascadeType.ALL)
 //    private List<Review> reviews = new ArrayList<>();
 
@@ -25,11 +25,11 @@ public class Game extends AbstractEntity{
 
     public Game(){}
 
-    public Game(String platform, String userName, List<Achievement> achievements, Review reviews) {
+    public Game(String platform, String userName, List<Achievement> achievements, Review review) {
         this.platform = platform;
         this.userName = userName;
         this.achievements = achievements;
-        this.reviews = reviews;
+        this.review = review;
     }
 
     public Game(String platform, String name) {
@@ -53,12 +53,10 @@ public class Game extends AbstractEntity{
         this.achievements = achievements;
     }
 
-    public Review getReviews() {
-        return reviews;
-    }
+    public Review getReview() { return review; }
 
-    public void setReviews(Review reviews) {
-        this.reviews = reviews;
+    public void setReview(Review review) {
+        this.review = review;
     }
 
     public String getUserName() {
