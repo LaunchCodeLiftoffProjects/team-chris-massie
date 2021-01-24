@@ -4,7 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +15,10 @@ public class Game extends AbstractEntity{
 
     @OneToOne(cascade = CascadeType.ALL)
     private Review review;
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<Review> reviews = new ArrayList<>();
 
-    @NotBlank(message = "Please select a platform.")
+//    @NotBlank(message = "Please select a platform.")
     private String platform;
+
     private String userName;
 
     public Game(){}

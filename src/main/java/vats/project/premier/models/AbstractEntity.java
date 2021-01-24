@@ -3,7 +3,6 @@ package vats.project.premier.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -13,7 +12,7 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
-    @NotBlank(message = "Please enter a name.")
+    //@NotBlank(message = "Please enter a name.")
     public String name;
 
     public int getId() {

@@ -43,14 +43,14 @@
             <a th:href="@{/achievements}"> Add Achievements</a>
         </div>
 
-        <div class="form-group">
-            <label th:for="reviews" style="color:white">Reviews </label>
-            <select name = "reviews" multiple>
-                <option th:each = "review: ${reviews}" th:text="${review.description}" th:value="${review.id}">
-                </option>
-            </select>
-            <a th:href="@{/reviews}"> Add Reviews</a>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label th:for="reviews" style="color:white">Reviews </label>-->
+<!--            <select name = "reviews" multiple>-->
+<!--                <option th:each = "review: ${reviews}" th:text="${review.description}" th:value="${review.id}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--            <a th:href="@{/reviews}"> Add Reviews</a>-->
+<!--        </div>-->
 
         <input type="submit" value="Update game" />
     </form>
