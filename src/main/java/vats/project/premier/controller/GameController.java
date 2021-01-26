@@ -58,6 +58,9 @@ public class GameController {
             return "games";
         }
 
+        //List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
+        //if(achievementObj.contains(gameRepository.)){}
+
         if(achievements != null) {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
             newGame.setAchievements(achievementObj);
@@ -175,7 +178,8 @@ public class GameController {
     @PostMapping("update")
     public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors,
                                          @RequestParam int gameId, @RequestParam(required = false) String platform,
-                                         @RequestParam String userName, @RequestParam(required = false) List<Integer>  achievements,
+                                         @RequestParam String userName,
+                                         @RequestParam(required = false) List<Integer> achievements,
                                          @RequestParam(required = false) Integer reviews) {
 
         if (errors.hasErrors()) {
@@ -184,15 +188,22 @@ public class GameController {
             return "games";
         }
 
+
         Game game = gameRepository.findById(gameId).get();
         System.out.println(gameId);
 
+
         String gamePlatform = game.getPlatform();
+        List<Achievement> gameAchievements = game.getAchievements();
 
         if(achievements != null) {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
-            game.setAchievements(achievementObj);
+            gameAchievements.addAll(achievementObj);
+            game.setAchievements(gameAchievements);
+        }else{
+            game.setAchievements(gameAchievements);
         }
+
         if (reviews != null) {
             Review reviewObj = game.getReview();
             game.setReview(reviewObj);

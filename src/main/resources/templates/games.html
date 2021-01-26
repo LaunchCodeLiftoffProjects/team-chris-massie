@@ -18,13 +18,13 @@
                 </option>
             </select>
             <label class="p1" th:for="name" style="color:white">Game Name</label>
-            <input class="form-control" th:field="${game.name}">
+            <input class="form-control" th:field="${game.name}" required>
             <p class="error" th:errors="${game.name}" style="color:white"></p>
         </div>
 
         <div class="form-group">
             <label class="p1" th:for="platform" style="color:white">Platform</label>
-                <input class="form-control" th:field="${game.platform}">
+                <input class="form-control" th:field="${game.platform}" required>
             <p class="error" th:errors="${game.platform}" style="color:white"></p>
         </div>
 

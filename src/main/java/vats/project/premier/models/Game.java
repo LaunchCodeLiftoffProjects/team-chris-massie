@@ -16,7 +16,7 @@ public class Game extends AbstractEntity{
     @OneToOne(cascade = CascadeType.ALL)
     private Review review;
 
-//    @NotBlank(message = "Please select a platform.")
+    //@NotBlank(message = "Please select a platform.")
     private String platform;
 
     private String userName;

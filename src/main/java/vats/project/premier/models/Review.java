@@ -1,7 +1,5 @@
 package vats.project.premier.models;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -11,7 +9,7 @@ public class Review extends AbstractEntity{
     @OneToOne(optional=false, mappedBy="review")
     private Game game;
 
-    @NotBlank(message = "Please select a game and enter a review.")
+    //@NotBlank(message = "Please select a game and enter a review.")
     private String description;
 
     public Review() {};

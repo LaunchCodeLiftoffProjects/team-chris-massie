@@ -13,7 +13,7 @@
 <form method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="achievement" style="color:white">Achievement Name</label>
-        <input class="form-control" th:field="${achievement.name}">
+        <input class="form-control" th:field="${achievement.name}" required>
         <p class="error" th:errors="${achievement.name}"></p>
     </div>
     <div class="form-group">
