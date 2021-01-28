@@ -38,15 +38,15 @@ public class ReviewController {
             model.addAttribute("title", "Add a Review");
             model.addAttribute("description", newReview.getDescription());
             model.addAttribute("reviews", "reviews");
-            model.addAttribute("game", gameRepository.findAll());
-            model.addAttribute("reviews", reviewRepository.findAll());
             return "reviews";
         }
         Game game = gameRepository.findById(gameId).get();
-        game.setReview(newReview.getGame().getReview());
-        gameRepository.save(game);
+        game.setReview(new Review(game, description));
+        //game.setReview(newReview);
+
         newReview.setGame(game);
-        reviewRepository.save(newReview);
+        //reviewRepository.save(newReview);
+        gameRepository.save(game);
         return "redirect:/reviews";
     }
 
@@ -57,17 +57,20 @@ public class ReviewController {
         return "deleteReview";
     }
     @PostMapping("deleteReview")
-    public String processDeleteReviewForm(@RequestParam(required = false) int[] reviewIds) {
+    public String processDeleteReviewForm(Model model, @RequestParam(required = false) int[] reviewIds) {
         if (reviewIds != null) {
             for (int id : reviewIds) {
-                reviewRepository.deleteById(id);
+                //reviewRepository.deleteById(id);
+              Review review =  reviewRepository.findById(id).get();
+                Game game = review.getGame();
+                game.setReview(null);
+                gameRepository.save(game);
+                reviewRepository.save(review);
+                model.addAttribute("reviews", reviewRepository.findAll());
+
             }
         }
-        return "deleteReview";
+        return "redirect:/reviews";
     }
 
 }
-
-
-
-

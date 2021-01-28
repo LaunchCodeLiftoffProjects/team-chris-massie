@@ -2,13 +2,14 @@ package vats.project.premier.models;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Review extends AbstractEntity{
 
-    @OneToOne(optional=false, mappedBy="review")
+    @OneToOne(cascade = CascadeType.ALL)
     private Game game;
 
     @NotBlank(message = "Please select a game and enter a review.")

@@ -2,44 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container toTheLeft">
-
+<!--<body class="container kafka">-->
 <body>
 <div th:replace="fragments :: page-header"></div>
 <div class="container body-content">
     <h1 class="p1" style="color:white" text-align="center">REVIEWS</h1>
     <form method="post" style="max-width:600px;">
-    <div class="form-group">
-        <label style="color:white" th:for="gameId">Game: </label>
-        <select class="custom-select-lg mb-3" name = "gameId">
-            <option th:each = "game: ${game}" th:text="${game.name}"  th:value="${game.id}">
-            </option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label th:for="description" style="color:white" class="form-label">Review</label>
-        <textarea rows="8" name= "description" class="form-control" th:value="${review.description}"></textarea>
-        <p class="error" th:errors="${review.description}"></p>
-    </div>
-<!--    <p></p>-->
-<!--    <form method="post" style=max-width:600px;" >-->
-<!--        <div class="form-group">-->
-<!--            <label th:for="review" style="color:white">Review Name</label>-->
-<!--            <input class="form-control" th:field="${review.name}">-->
-<!--            <p class="error" th:errors="${review.name}"></p>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label th:for="description" style="color:white">Review</label>-->
-<!--            <input class="form-control" th:field="${review.description}">-->
-<!--            <p class="error" th:errors="${review.description}"></p>-->
-<!--        </div>-->
-    <br>
-        <br>
+        <div class="form-group">
+            <label style="color:white" th:for="gameId">Game: </label>
+            <select name = "gameId">
+                <option th:each = "game: ${game}" th:text="${game.name}"  th:value="${game.id}">
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label th:for="description" style="color:white" class="form-label">Review</label>
+            <textarea name= "description" class="form-control" th:value="${review.description}"></textarea>
+            <p class="error" th:errors="${review.description}"></p>
+        </div>
+        <!--    <p></p>-->
+        <!--    <form method="post" style=max-width:600px;" >-->
+        <!--        <div class="form-group">-->
+        <!--            <label th:for="review" style="color:white">Review Name</label>-->
+        <!--            <input class="form-control" th:field="${review.name}">-->
+        <!--            <p class="error" th:errors="${review.name}"></p>-->
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label th:for="description" style="color:white">Review</label>-->
+        <!--            <input class="form-control" th:field="${review.description}">-->
+        <!--            <p class="error" th:errors="${review.description}"></p>-->
+        <!--        </div>-->
+
         <input type="submit" value="Create Review" />
 
     </form>
-    <br>
-    <br>
     <div>
         <table class = "table table-striped">
             <thead>
@@ -48,16 +44,16 @@
                 <td>Review</td>
             </tr>
             </thead>
-        <tr th:each="game : ${game}">
-        <td th:text="${game.name}"></td>
-        <td th:text="${game.review?.description}"></td>
-        </tr>
+            <tr th:each="game : ${game}">
+                <td th:text="${game.name}"></td>
+                <td th:text="${game.review?.description}"></td>
+            </tr>
         </table>
 
     </div>
 
     <a href="/deleteReview"><input type="submit" value="Delete Review" class="btn btn-danger" ></a>
-    <br>
+
     <br>
 </div>
 </body>
