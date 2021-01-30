@@ -4,11 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import vats.project.premier.models.Achievement;
 import vats.project.premier.models.Game;
 import vats.project.premier.models.Review;
@@ -17,6 +13,7 @@ import vats.project.premier.models.data.GameRepository;
 import vats.project.premier.models.data.ReviewRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +33,7 @@ public class GameController {
     @RequestMapping("games")
     public String displayGamesForm(Model model) {
         model.addAttribute("Games form", "Games");
-        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("achievements", findAchievementWithNoAchievement());
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
         model.addAttribute(new Game());
@@ -46,11 +43,11 @@ public class GameController {
     @PostMapping("games")
     public String processGamesForm(@ModelAttribute @Valid Game newGame, Errors errors, Model model,
                                    @RequestParam String userName,
-                                   @RequestParam(required = false) List<Integer>  achievements,
-                                   @RequestParam(required = false) Integer review){
+                                   @RequestParam(required = false) List<Integer> achievements,
+                                   @RequestParam(required = false) Integer review) {
         if (errors.hasErrors()) {
             model.addAttribute("Games form", "Games");
-            model.addAttribute("achievements", achievementRepository.findAll() );
+            model.addAttribute("achievements", findAchievementWithNoAchievement());
             model.addAttribute("games", gameRepository.findAll());
             model.addAttribute("reviews", reviewRepository.findAll());
             model.addAttribute("title", "Add Game");
@@ -58,10 +55,14 @@ public class GameController {
             return "games";
         }
 
-        if(achievements != null) {
+        if (achievements != null) {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
             newGame.setAchievements(achievementObj);
-        } if(review != null) {
+            for (Achievement achievement : achievementObj) {
+                achievement.setGame(newGame);
+            }
+        }
+        if (review != null) {
             Review reviewObj = new Review();
             newGame.setReview(reviewObj);
         }
@@ -74,10 +75,10 @@ public class GameController {
     @GetMapping("gameDetails")
     public String displayGameDetails(@RequestParam Integer gameId, Model model, Error error,
                                      @RequestParam(required = false) String platform,
-                                     @RequestParam(required = false) List<Integer>  achievements,
+                                     @RequestParam(required = false) List<Integer> achievements,
                                      @RequestParam(required = false) Integer review) {
 
-        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("achievements", findAchievementWithNoAchievement());
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("review", reviewRepository.findAll());
         Optional<Game> result = gameRepository.findById(gameId);
@@ -87,16 +88,16 @@ public class GameController {
         model.addAttribute("game", game);
         model.addAttribute("platform", platform);
 
-        if(achievements != null) {
-            List<Achievement> achievementObj =  game.getAchievements();
+        if (achievements != null) {
+            List<Achievement> achievementObj = game.getAchievements();
             model.addAttribute("achievements", achievementObj);
         } else {
             String achievementObj = "Create Achievement?";
             model.addAttribute("achievements", achievementObj);
         }
         if (review != null) {
-                Review reviewObj = new Review();
-                model.addAttribute("review", reviewObj);
+            Review reviewObj = new Review();
+            model.addAttribute("review", reviewObj);
         } else {
             String reviewObj = "Create Review?";
             model.addAttribute("review", reviewObj);
@@ -108,10 +109,10 @@ public class GameController {
 
     @GetMapping("achievementDetails")
     public String displayAchievementDetails(@RequestParam Integer achievementId, Model model, Error error,
-                                     @RequestParam(required = false) String platform,
-                                     @RequestParam(required = false) Achievement  achievements) {
+                                            @RequestParam(required = false) String platform,
+                                            @RequestParam(required = false) Achievement achievements) {
 
-        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("achievements", achievementRepository.findAll());
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("review", reviewRepository.findAll());
         Optional<Achievement> result = achievementRepository.findById(achievementId);
@@ -121,14 +122,13 @@ public class GameController {
         model.addAttribute("game", achievement);
         model.addAttribute("platform", platform);
 
-        if(achievements != null) {
-            Achievement achievementObj =  result.get();
+        if (achievements != null) {
+            Achievement achievementObj = result.get();
             model.addAttribute("achievements", achievementObj);
         } else {
             String achievementObj = "Create Achievement?";
             model.addAttribute("achievements", achievementObj);
         }
-
 
 
         return "achievementDetails";
@@ -164,7 +164,7 @@ public class GameController {
     @GetMapping("update")
     public String displayUpdateGameForm(Model model) {
         model.addAttribute("Games form", "Games");
-        model.addAttribute("achievements", achievementRepository.findAll() );
+        model.addAttribute("achievements", findAchievementWithNoAchievement());
         model.addAttribute("games", gameRepository.findAll());
         model.addAttribute("reviews", reviewRepository.findAll());
         model.addAttribute("title", "Update Games");
@@ -175,7 +175,7 @@ public class GameController {
     @PostMapping("update")
     public String processUpdateGamesForm(@ModelAttribute @Valid Game newGame, Model model, Errors errors,
                                          @RequestParam int gameId, @RequestParam(required = false) String platform,
-                                         @RequestParam String userName, @RequestParam(required = false) List<Integer>  achievements,
+                                         @RequestParam String userName, @RequestParam(required = false) List<Integer> achievements,
                                          @RequestParam(required = false) Integer reviews) {
 
         if (errors.hasErrors()) {
@@ -189,7 +189,7 @@ public class GameController {
 
         String gamePlatform = game.getPlatform();
 
-        if(achievements != null) {
+        if (achievements != null) {
             List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAllById(achievements);
             game.setAchievements(achievementObj);
         }
@@ -207,6 +207,19 @@ public class GameController {
 
         gameRepository.save(game);
         return "redirect:/games";
+
+    }
+
+    //Helper Method's
+    public List<Achievement> findAchievementWithNoAchievement() {
+        List<Achievement> achievementObj = (List<Achievement>) achievementRepository.findAll();
+        List<Achievement> achievementList = new ArrayList<>();
+        for (Achievement achievement : achievementObj) {
+            if (achievement.getGame() == null) {
+                achievementList.add(achievement);
+            }
+        }
+        return achievementList;
 
     }
 }

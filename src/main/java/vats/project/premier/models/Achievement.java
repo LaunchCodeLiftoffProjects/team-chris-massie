@@ -1,15 +1,13 @@
 package vats.project.premier.models;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Achievement extends AbstractEntity{
 
-    @OneToMany
-    private final List<Game> games = new ArrayList<>();
+    @OneToOne
+    private Game game;
 
     //@NotBlank(message = "Please enter description.")
     private String description;
@@ -29,7 +27,11 @@ public class Achievement extends AbstractEntity{
         this.description = description;
     }
 
-    public List<Game> getGames() {
-        return games;
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }
