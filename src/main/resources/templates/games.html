@@ -50,11 +50,12 @@
 <!--             <a th:href="@{/reviews}"> Add Additional Reviews</a>-->
 <!--         </div>-->
 
-        <input type="submit" value="Create game" />
+        <input class ="b-primary" type="submit" value="Create game" />
     </form>
+
     <br>
-    <a style="color:red" th:href="@{/delete}">Delete Games</a>
-    <a style="color:blue" th:href="@{/update}">Update Games</a>
+    <a href="delete" onclick="return true;" rel="nofollow" class="b-nav">Delete Game</a>
+    <a href="update" onclick="return true;" rel="nofollow" class="b-nav">Update Games</a>
     <br>
 
     <br>

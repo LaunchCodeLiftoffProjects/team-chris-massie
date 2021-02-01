@@ -1,5 +1,5 @@
-vats/project/premier/controller/HelloController.java
- vats.project.premier.controller.HelloController
+vats/project/premier/controller/AchievementController.java
+ vats.project.premier.controller.AchievementController
 vats/project/premier/models/Game.java
  vats.project.premier.models.Game
 vats/project/premier/WebApplicationConfig.java
@@ -16,8 +16,8 @@ vats/project/premier/models/Review.java
  vats.project.premier.models.Review
 vats/project/premier/models/dto/RegisterFormDTO.java
  vats.project.premier.models.dto.RegisterFormDTO
-vats/project/premier/models/User.java
- vats.project.premier.models.User
+vats/project/premier/models/Achievement.java
+ vats.project.premier.models.Achievement
 vats/project/premier/models/data/GameRepository.java
  vats.project.premier.models.data.GameRepository
 vats/project/premier/models/data/ReviewRepository.java
@@ -34,15 +34,15 @@ vats/project/premier/controller/UserController.java
  vats.project.premier.controller.UserController
 vats/project/premier/models/data/TrackerRepository.java
  vats.project.premier.models.data.TrackerRepository
-vats/project/premier/models/Tracker.java
- vats.project.premier.models.Tracker
+vats/project/premier/controller/GameController.java
+ vats.project.premier.controller.GameController
 vats/project/premier/controller/HomeController.java
  vats.project.premier.controller.HomeController
 vats/project/premier/controller/SearchController.java
  vats.project.premier.controller.SearchController
-vats/project/premier/controller/AchievementController.java
- vats.project.premier.controller.AchievementController
-vats/project/premier/models/Achievement.java
- vats.project.premier.models.Achievement
-vats/project/premier/controller/GameController.java
- vats.project.premier.controller.GameController
+vats/project/premier/models/User.java
+ vats.project.premier.models.User
+vats/project/premier/models/Tracker.java
+ vats.project.premier.models.Tracker
+vats/project/premier/controller/HelloController.java
+ vats.project.premier.controller.HelloController
